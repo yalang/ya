@@ -2,10 +2,10 @@ import مفيد.الكلمات as الكلمات
 import os
 
 keywords = الكلمات.قاموس_الكلمات()
-file_ext = "قلب"
-file_name = 'احلاـوـسحلا'
-# file_path = file_name + "." + file_ext
-file_path = file_name
+# file_ext = "قلب"
+# file_name = 'احلاـوـسحلا'
+# # file_path = file_name + "." + file_ext
+# file_path = file_name
 
 
 def replace_keyword(word):
@@ -28,8 +28,8 @@ def do_replace_token(buffer, line):
     return line
 
 
-def main():
-    with open(file_path, 'r') as file:
+def main(file_name):
+    with open(file_name, 'r') as file:
         content = ""
         for line in file:
             line = line.replace("\u202b", "")
@@ -141,20 +141,8 @@ def main():
                 else:
                     buffer += char
 
-            # words = line.split()
-            # for word in words:
-            #     print(word)
-            # replace_words = [replace_keyword(word) for word in words]
-            # for word in words:
-            #     word = replace_keyword(word)
-            # print(replace_words)
-            # new_line = ""
-            # for word in replace_words:
-            #     new_line += word + " "
             content += line
 
-    # for key, value in keywords.items():
-    #     content = content.replace(key, value)
     py_file = file_name + ".py"
     f = open(py_file, "w")
     f.write(content)
@@ -163,4 +151,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(*args[0])
