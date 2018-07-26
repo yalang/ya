@@ -1,4 +1,4 @@
-# لغة قلب [:blue_heart:] 
+# لغة القلب [:blue_heart:] 
 **_QALB_** Language is a programming language in which you can code python in arabic language.
 
 This is in completely basic and experimental stage.
@@ -16,10 +16,10 @@ This is a big project and I need your contribution. This can be used for other l
 
 This has been tested on macOS 10.13.2 and PyCharm 2018.1 (Community Edition) and Visual Studio Code (1.25.1)
 
-You can take a fork of this repo and can make change ot file * احلاـوـسحلا * and when you are done run
+You can take a fork of this repository and can make change to file * مرحبا * and when you are done run
 
-`python3 main.py احلاـوـسحلا`
+`python3 main.py مرحبا`
 
-and it will create a python file احلاـوـسحلا.py which you have to run manually for now
+and it will create a python file مرحبا.py which you have to run manually for now
 
-`python3 احلاـوـسحلا.py`
+`python3 مرحبا.py`

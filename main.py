@@ -1,12 +1,7 @@
 import مفيد.الكلمات as الكلمات
-import os
+import os, sys
 
 keywords = الكلمات.قاموس_الكلمات()
-# file_ext = "قلب"
-# file_name = 'احلاـوـسحلا'
-# # file_path = file_name + "." + file_ext
-# file_path = file_name
-
 
 def replace_keyword(word):
     if word is not "" and (word[0] == "٠" or word[0] == "١" or word[0] == "٢" or word[0] == "٣" or word[0] == "٤" or word[0] == "٥" or word[0] == "٦" or word[0] == "٧" or word[0] == "٨" or word[0] == "٩"):
@@ -151,4 +146,4 @@ def main(file_name):
 
 
 if __name__ == '__main__':
-    main(*args[0])
+    main(sys.argv[1])
