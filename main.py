@@ -30,11 +30,14 @@ def main(file_name):
             line = line.replace("\u202b", "")
             line = line.replace("\u202c", "")
             line = line.replace("،", ",")
-            token = ''
+            line = line.replace("‬؛", ";")
             buffer = ''
             blackout = False
             for char in line:
                 if not blackout and char == '\n':
+                    line = do_replace_token(buffer, line)
+                    buffer = ''
+                elif not blackout and char == ';':
                     line = do_replace_token(buffer, line)
                     buffer = ''
                 elif not blackout and char == ' ':
@@ -138,7 +141,8 @@ def main(file_name):
 
             content += line
 
-    py_file = file_name + ".py"
+    file_split = file_name.split(".")
+    py_file = file_split[0] + ".py"
     f = open(py_file, "w")
     f.write(content)
 
