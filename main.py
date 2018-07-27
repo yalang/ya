@@ -1,15 +1,15 @@
 import os
 import sys
-import token as tkn
+from qalb import token as tkn
 
 
 def main(file_name):
 
+    # Variables for future use may.
+    # If not used will be removed.
     is_import = False
     is_from = False
     is_as = False
-    is_comment = False
-    is_string = False
     is_curly_bracket = False
     is_square_bracket = False
     is_bracket = False
@@ -28,74 +28,89 @@ def main(file_name):
     is_return = False
 
     with open(file_name, 'r') as file:
+        # Flag for "Not processing tokens for comment"
+        is_comment = False
+        # Flag for "Not processing tokens for string"
+        is_string = False
         py_content = ""
-        py_line = ""
         line_no = 0
-        for line in file:
+        for py_line in file:
             line_no += 1
-            line = line.replace("\u202b", "")
-            line = line.replace("\u202c", "")
-            line = line.replace("،", ",")
-            line = line.replace("‬؛", ";")
+            py_line = py_line.replace("\u202b", "")
+            py_line = py_line.replace("\u202c", "")
+            py_line = py_line.replace("،", ",")
+            py_line = py_line.replace("‬؛", ";")
             buffer = ''
+            token = ''
             # blackout = False
             char_no = 0
-            for char in line:
+            for char in py_line:
                 char_no += 1
                 # All condition were separate initially.
                 # It is merged in order to code maintenance for now.
                 # It is important as each symbols were supposed to be handled separately.
                 # It will be separated based on the need now.
-                if char == '\n' or char == ';' or char == ' ' or char == '.' or char == ',':
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                if char == '\n' or char == ' ' or char == ':' or char == ';' or char == '.' or char == ',':
+                    if buffer != '' and (not is_string or not is_comment):
+                        token = buffer
+                        py_line = tkn.process_token(token, py_line)
+                        buffer = ''
                 elif char == '#':
-                    is_comment = not is_comment
-                elif char == ':':
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                    is_comment = True
                 elif char == '(':
                     is_bracket = True
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                    if buffer != '' and (not is_string or not is_comment):
+                        token = buffer
+                        py_line = tkn.process_token(token, py_line)
+                        py_line = tkn.process_token(token, py_line, process_func=True)
+                        buffer = ''
+                    elif token != '' and (not is_string or not is_comment):
+                        py_line = tkn.process_token(token, py_line, process_func=True)
+                        buffer = ''
                 elif char == ')':
                     is_bracket = False
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                    if buffer != '' and (not is_string or not is_comment):
+                        token = buffer
+                        py_line = tkn.process_token(token, py_line)
+                        buffer = ''
                 elif char == '[':
                     is_square_bracket = True
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                    if buffer != '' and (not is_string or not is_comment):
+                        token = buffer
+                        py_line = tkn.process_token(token, py_line)
+                        buffer = ''
                 elif char == ']':
                     is_square_bracket = False
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                    if buffer != '' and (not is_string or not is_comment):
+                        token = buffer
+                        py_line = tkn.process_token(token, py_line)
+                        buffer = ''
                 elif char == '{':
                     is_curly_bracket = True
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                    if buffer != '' and (not is_string or not is_comment):
+                        token = buffer
+                        py_line = tkn.process_token(token, py_line)
+                        buffer = ''
                 elif char == '}':
                     is_curly_bracket = True
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
-                elif :
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
-                elif :
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                    if buffer != '' and (not is_string or not is_comment):
+                        token = buffer
+                        py_line = tkn.process_token(token, py_line)
+                        buffer = ''
                 elif char == '\"' or char == '\'':
                     is_string = not is_string
-                elif char == '=' or char == '!' or char == '<' or char == '>' or char == '+' or char == '-' \
-                        or char == '%' or char == '/' or char == '*' or char == '^' or char == '==' or char == '!=' \
-                        or char == '<=' or char == '>=' or char == '+=' or char == '-=' or char == '%=' \
-                        or char == '/=' or char == '*=' or char == '^=':
-                    line = tkn.process_token(buffer, line)
-                    buffer = ''
+                elif (char == '=' or char == '!' or char == '<' or char == '>' or char == '+' or char == '-'
+                        or char == '%' or char == '/' or char == '*' or char == '^' or char == '==' or char == '!='
+                        or char == '<=' or char == '>=' or char == '+=' or char == '-=' or char == '%='
+                        or char == '/=' or char == '*=' or char == '^='):
+                    if buffer != '' and (not is_string or not is_comment):
+                        token = buffer
+                        py_line = tkn.process_token(token, py_line)
+                        buffer = ''
                 else:
                     buffer += char
 
-            py_content += line
+            py_content += py_line
 
     file_split = file_name.split(".")
     py_file = file_split[0] + ".py"
@@ -106,5 +121,4 @@ def main(file_name):
 
 
 if __name__ == '__main__':
-    main("مرحبا.قلب")
-    # main(sys.argv[1])
+    main(sys.argv[1])
