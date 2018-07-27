@@ -1,5 +1,3 @@
-import os
-import sys
 from qalb import token as tkn
 
 
@@ -116,9 +114,3 @@ def main(file_name):
     py_file = file_split[0] + ".py"
     f = open(py_file, "w")
     f.write(py_content)
-
-    os.system("python3 " + py_file)
-
-
-if __name__ == '__main__':
-    main(sys.argv[1])
