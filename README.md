@@ -1,7 +1,7 @@
 # لغة القلب [:blue_heart:] 
-**_QALB_** Language is a programming language in which you can code python in arabic language.
+**_QALB_** Language is a completely open source programming language in which you can code python in arabic language.
 
-This is in completely basic and experimental stage.
+This is in completely basic and experimental phase.
 
 Please see `احلاـوـسحلا` file for a sample file of code. 
 > I apologize for any mistakes. And need your help in that.
@@ -27,6 +27,15 @@ and it will create a python file مرحبا.py which you have to run manually fo
 ## Requirements
 
 Python3 is required to compile the code.
+
+
+## Installing
+Clone this repository in a folder.
+Go to the qalblang folder and run
+
+`./install.sh`
+
+Next Add `PATH=$HOME/qalblang/bin:$PATH` to your `.bash_profile`
 
 ## Known Issues
 

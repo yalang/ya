@@ -3,6 +3,7 @@
 
 ### Ignored for dev ###
 *.go
+0
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

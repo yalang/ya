@@ -79,7 +79,7 @@ def main(file_name):
 
             py_content += py_line
 
-            print("tokens", tokens)
+            # print("tokens", tokens)
 
     file_split = file_name.split(".")
     py_file = file_split[0] + ".py"
