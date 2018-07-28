@@ -64,38 +64,38 @@ func_dict = {
 def process_keyword(token):
     # If the token is a arabic number it will return english number
     if token[0] in num_dict.keys():
-        return ''.join([num_dict[c] for c in token])
+        return ''.join([num_dict[c] for c in token]), True
 
     # If the token matches any python keywords it returns that keywords
     if token in keyword_dict.keys():
-        return keyword_dict[token]
+        return keyword_dict[token], True
 
     # If nothing matches it returns token as it
-    return token
+    return token, False
 
 
 def process_func(token):
     # If the token matches any python in built it returns that function name
     if token in func_dict.keys():
-        return func_dict[token]
+        return func_dict[token], True
 
     # If nothing matches it returns token as it
-    return token
+    return token, False
 
 
-def process(token, line, process_func=False):
-    if token != '':
-        if process_func:
-            r_func = process_func(word=token)
-            # If there is a inbuilt function name for this token, it will replace in the line
-            if r_func:
-                line = line.replace(token, r_func)
-        else:
-            r_tkn = process_keyword(token=token)
-            # If there is a keyword to replace, it will replace in the line
-            if r_tkn:
-                line = line.replace(token, r_tkn)
-    return line
+# def process(token, line, process_func=False):
+#     if token != '':
+#         if process_func:
+#             r_func = process_func(word=token)
+#             # If there is a inbuilt function name for this token, it will replace in the line
+#             if r_func:
+#                 line = line.replace(token, r_func)
+#         else:
+#             r_tkn = process_keyword(token=token)
+#             # If there is a keyword to replace, it will replace in the line
+#             if r_tkn:
+#                 line = line.replace(token, r_tkn)
+#     return line
 
 
 def push(token, symbol, stack):
