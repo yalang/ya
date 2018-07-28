@@ -42,6 +42,7 @@ def main(file_name):
             py_line = py_line.replace("\u202c", "")
             py_line = py_line.replace("،", ",")
             py_line = py_line.replace("‬؛", ";")
+            py_line = py_line.replace("٪", "%")
             buffer = ''
             token = ''
             tokens = []
