@@ -4,8 +4,6 @@
 
 It converts the arabic text into executable python code and execute it. In real you can code anything which you can code in python, but this is in starting phase and is not stable yet.
 
-This is in completely basic and experimental phase.
- 
 > It is recommended to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) It support RTL text direction and you can see .قلب extension easily. The development for plugin to support qalblang is in progress.  
 
 As of now it has support for MacOS only.
@@ -26,7 +24,7 @@ Now go to the qalblang folder and run
 
 `./install.sh`
 
-Next Add `PATH=$HOME/qalblang/bin:$PATH` to your `.bash_profile`
+Next Add "PATH=$HOME/qalblang/bin:$PATH" to your `.bash_profile`
 
 ## Running
 
@@ -52,6 +50,6 @@ For more sample code see (https://github.com/qalblang/qalblang-sample)
 
 ## Known Issues
 
-As of now it has been tested on MacOS only. It might run linux as well but not tested yet.
+As of now it has been tested on MacOS only. It might run on linux as well but not tested yet.
 
 On printing any arabic number it prints number.
