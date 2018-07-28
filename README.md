@@ -23,3 +23,11 @@ You can take a fork of this repository and can make change to file * مرحبا 
 and it will create a python file مرحبا.py which you have to run manually for now
 
 `python3 مرحبا.py`
+
+## Requirements
+
+Python3 is required to compile the code.
+
+## Known Issues
+
+As of now it has been tested on MacOS only. It might run linux as well but not tested yet.
