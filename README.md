@@ -1,9 +1,10 @@
-# لغة القلب [:blue_heart:] 
+#<:blue_heart:/> لغة القلب 
 **_QALB_** Language is a completely open source programming language in which you can code python in arabic language.
 
 This is in completely basic and experimental phase.
 
-Please see `احلاـوـسحلا` file for a sample file of code. 
+Please see (https://github.com/qalblang/qalblang-sample) file for code samples.
+ 
 > I apologize for any mistakes. And need your help in that.
 
 `main.py` convert `احلاـوـسحلا`(arabic code) into `احلاـوـسحلا.py`(python code)
@@ -35,3 +36,5 @@ Next Add `PATH=$HOME/qalblang/bin:$PATH` to your `.bash_profile`
 ## Known Issues
 
 As of now it has been tested on MacOS only. It might run linux as well but not tested yet.
+
+On printing any arabic number it prints number.
