@@ -1,4 +1,4 @@
-keywords = {
+keyword_dict = {
         'زائف': 'False',
         'لااحد': 'None',
         'صحيح': 'True',
@@ -34,12 +34,21 @@ keywords = {
         'محصول': 'yield'
     }
 
+type_dict = {
+        'منطقية': 'bool',
+        'عدد': 'int',
+        'عشري': 'float',
+        'خيط': 'string'
+    }
+
+num_dict = {"٠": "0", "١": "1", "٢": "2", "٣": "3", "٤": "4", "٥": "5", "٦": "6", "٧": "7", "٨": "8", "٩": "9"}
+
 func_dict = {
         'مطلق': 'abs', '': 'delattr', 'مزيج': 'hash', '': 'memoryview', 'مجموعة': 'set',
         'كل': 'all', 'قاموس': 'dict', 'مساعدة': 'help', 'أدنى': 'min', '': 'setattr',
-        '': 'any', '': 'dir', '': 'hex', '': 'next', '': 'slice',
+        'أي': 'any', 'دليل': 'dir', '': 'hex', 'بعد': 'next', '': 'slice',
         '': 'ascii', '': 'divmod', '': 'id', '': 'object', '': 'sorted',
-        '': 'bin', '': 'enumerate', '': 'input', '': 'oct', '': 'staticmethod',
+        '': 'bin', '': 'enumerate', 'إدخال': 'input', '': 'oct', '': 'staticmethod',
         '': 'bool', '': 'eval', '': 'int', 'افتح': 'open', '': 'str',
         '': 'breakpoint', '': 'exec', '': 'isinstance', '': 'ord', '': 'sum',
         '': 'bytearray', '': 'filter', '': 'issubclass', '': 'pow', '': 'super',
@@ -54,27 +63,27 @@ func_dict = {
 
 def replace_keyword(word):
     # If the token is a arabic number it will replace with numbers
-    if word is not "" and (word[0] == "٠" or word[0] == "١" or word[0] == "٢" or word[0] == "٣" or word[0] == "٤"
-                           or word[0] == "٥" or word[0] == "٦" or word[0] == "٧" or word[0] == "٨" or word[0] == "٩"):
-        num_dict = {"٠": "0", "١": "1", "٢": "2", "٣": "3", "٤": "4", "٥": "5", "٦": "6", "٧": "7", "٨": "8", "٩": "9"}
+    if word[0] in num_dict.keys():
         return ''.join([num_dict[c] for c in word])
 
     # If the token matches any python keywords it replaces it with the keywords
-    for key, value in keywords.items():
-        if word == key:
-            return value
+    if word in keyword_dict.keys():
+        return keyword_dict[word]
+
     return False
 
 
 def replace_function(word):
     # If the token matches any python in built it replaces it with the function name
-    for key, value in func_dict.items():
-        if word == key:
-            return value
+    # for key, value in func_dict.items():
+    #     if word == key:
+    #         return value
+    if word in func_dict.keys():
+        return func_dict[word]
     return False
 
 
-def process_token(token, line, process_func=False):
+def process(token, line, process_func=False):
     if token != '':
         if process_func:
             r_func = replace_function(word=token)
@@ -87,3 +96,16 @@ def process_token(token, line, process_func=False):
             if r_tkn:
                 line = line.replace(token, r_tkn)
     return line
+
+
+def push(token, symbol, stack):
+    if token == '':
+        token = stack.pop()
+
+    if symbol != " " and token == " ":
+        stack.append(symbol)
+    else:
+        stack.append(token)
+        stack.append(symbol)
+
+    return stack
