@@ -3,6 +3,8 @@
 
 ### Ignored for dev ###
 *.go
+*.ql
+*.qalb
 0
 ### Python ###
 # Byte-compiled / optimized / DLL files
