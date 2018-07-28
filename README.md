@@ -12,17 +12,7 @@ Please see `احلاـوـسحلا` file for a sample file of code.
 
 As of now it contains only print function for the experiment purpose. 
 
-This is a big project and I need your contribution. This can be used for other languages as well.
-
 This has been tested on macOS 10.13.2 and PyCharm 2018.1 (Community Edition) and Visual Studio Code (1.25.1)
-
-You can take a fork of this repository and can make change to file * مرحبا * and when you are done run
-
-`python3 main.py مرحبا`
-
-and it will create a python file مرحبا.py which you have to run manually for now
-
-`python3 مرحبا.py`
 
 ## Requirements
 
@@ -31,7 +21,12 @@ Python3 is required to compile the code.
 
 ## Installing
 Clone this repository in a folder.
-Go to the qalblang folder and run
+
+`git init`
+
+`git clone https://github.com/qalblang/qalblang.git`
+
+Now go to the qalblang folder and run
 
 `./install.sh`
 
