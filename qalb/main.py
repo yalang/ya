@@ -1,4 +1,4 @@
-from qalb import token as tkn
+from qalb import ar_token as tkn
 
 
 def main(file_name):
@@ -33,52 +33,71 @@ def main(file_name):
     with open(file_name, 'r') as file:
         py_content = ""
         line_no = 0
-        for py_line in file:
+        for line in file:
             # Flag for "Not processing tokens for comment"
             is_comment = False
 
             line_no += 1
-            py_line = py_line.replace("\u202b", "")
-            py_line = py_line.replace("\u202c", "")
-            py_line = py_line.replace("،", ",")
-            py_line = py_line.replace("‬؛", ";")
-            py_line = py_line.replace("٪", "%")
+            line = line.replace("\u202b", "")
+            line = line.replace("\u202c", "")
+            line = line.replace("،", ",")
+            line = line.replace("‬؛", ";")
+            line = line.replace("٪", "%")
             buffer = ''
             token = ''
             tokens = []
-            # blackout = False
+            py_line = ""
             char_no = 0
-            for char in py_line:
+            for character in line:
                 char_no += 1
                 # All condition were separate initially.
                 # It is merged in order to code maintenance for now.
                 # It is important as each symbols were supposed to be handled separately.
                 # It will be separated based on the need now.
-                if char == '#':
-                    is_comment = True
-                elif char == '\"' or char == '\'':
+
+                # When iterating over character, two case happens
+                # FIRST: Character does not match any symbol or it is not in the string or comment
+                # then it goes to the buffer. Buffer than become a token when a character
+                # is symbol or space or new line to be processed.
+                # After the token is processed it get back attached to the line.
+                # SECOND: In rest of the cases character attached back to the line.
+                # CONCLUSION: A character either get attached back to line or goes to the buffer
+                # to become a token which get processed and than attached to the line.
+                if character == '\"' or character == '\'':
                     is_string = not is_string
                     buffer = ''
-                elif not (is_string or is_comment) and (char in symbols or char in operators):
+                    py_line += character  # Attached back to the new line
+                # If it is string comment will not work
+                elif not is_string and character == '#':
+                    is_comment = True
+                    py_line += character  # Attached back to the new line
+                # If it is comment or string do not process as tokens
+                elif not (is_string or is_comment) and (character in symbols or character in operators):
                     if buffer != '':
                         token = buffer
-                        tokens = tkn.push(token=token, symbol=char, stack=tokens)
-                        py_line = tkn.process(token=token, line=py_line)
+                        tokens = tkn.push(token=token, symbol=character, stack=tokens)
+                        py_line += tkn.process_keyword(token=token)  # Processed and than attached to the line
                         buffer = ''
-                elif not (is_string or is_comment) and char == '(':
+                    py_line += character  # Attached back to the new line
+                elif not (is_string or is_comment) and character == '(':
                     if buffer != '':
                         token = buffer
-                        tokens = tkn.push(token=token, symbol=char, stack=tokens)
-                        py_line = tkn.process(token=token, line=py_line)
-                        py_line = tkn.process(token=token, line=py_line, process_func=True)
+                        tokens = tkn.push(token=token, symbol=character, stack=tokens)
+                        token = tkn.process_keyword(token=token)  # Processed for keyword
+                        py_line += tkn.process_func(token=token)  # Than for function and than attached to the line
+                        #  since the tokenizer symbol is ( which means the token might be an inbuilt function
                         buffer = ''
-                    elif token != '':
-                        py_line = tkn.process(token=token, line=py_line, process_func=True)
-                        buffer = ''
+                    else:
+                        pass
+                        # TODO
+                        # If the buffer is empty than chances are that the token has been
+                        # tokenized and processed by the space and got attached to the line.
+                        # But we need that token to be processed as function, because that might be an inbuilt function.
+                    py_line += character  # Attached back to the new line
                 else:
-                    buffer += char
+                    buffer += character  # Attached to the buffer to be processed as token
 
-            py_content += py_line
+            py_content += line
 
             # print("tokens", tokens)
 
