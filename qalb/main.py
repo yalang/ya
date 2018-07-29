@@ -1,88 +1,157 @@
-from qalb import token as tkn
+from qalb import ar_token as tkn
 
 
 def main(file_name):
 
-    # Variables for future use may.
+    # Flag Variables for future use maybe.
     # If not used will be removed.
-    is_import = False
-    is_from = False
-    is_as = False
-    is_curly_bracket = False
-    is_square_bracket = False
-    is_bracket = False
-    is_function = False
-    is_class = False
-    is_if = False
-    is_else = False
-    is_elseif = False
-    is_while = False
-    is_for = False
-    is_try = False
-    is_except = False
-    is_finally = False
-    is_pass = False
-    is_global = False
-    is_return = False
-    # Flag for "Not processing tokens for string"
+    # is_import = False
+    # is_from = False
+    # is_as = False
+    # is_curly_bracket = False
+    # is_square_bracket = False
+    # is_bracket = False
+    # is_function = False
+    # is_class = False
+    # is_if = False
+    # is_else = False
+    # is_elseif = False
+    # is_while = False
+    # is_for = False
+    # is_try = False
+    # is_except = False
+    # is_finally = False
+    # is_pass = False
+    # is_global = False
+    # is_return = False
+    # Flag for string
     is_string = False
+    # Storing as list for matching each symbol by using 'in' identifier
     operators = ['=', '!', '<', '>', '+', '-', '%', '/', '*', '^',
                  '==', '!=', '<=', '>=', '+=', '-=', '%=', '/=', '*=', '^=']
     symbols = ['\n', ' ', ':', ';', '.', ',', ')', '[', ']', '{', '}']
 
     with open(file_name, 'r') as file:
-        py_content = ""
-        line_no = 0
-        for py_line in file:
-            # Flag for "Not processing tokens for comment"
+        py_content = ""  # store all the processed line or py_line
+        line_no = 0  # store the characters position
+        for line in file:
+            # Flag for comment
             is_comment = False
 
             line_no += 1
-            py_line = py_line.replace("\u202b", "")
-            py_line = py_line.replace("\u202c", "")
-            py_line = py_line.replace("،", ",")
-            py_line = py_line.replace("‬؛", ";")
-            py_line = py_line.replace("٪", "%")
-            buffer = ''
-            token = ''
-            tokens = []
-            # blackout = False
-            char_no = 0
-            for char in py_line:
+            # Replace unicode and other arabic character to english.
+            line = line.replace("\u202b", "")
+            line = line.replace("\u202c", "")
+            line = line.replace("،", ",")
+            line = line.replace("‬؛", ";")
+            line = line.replace("٪", "%")
+            buffer = ''  # Store buffer
+            token = ''  # token to store buffer for processing
+            token_processed = False  # to store if the token was process or not
+            tokens = []  # Store all the token. not being used may used in future
+            py_line = ""  # new line to store all characters and processed buffer or buffer
+            char_no = 0  # store the characters position
+            for character in line:
                 char_no += 1
                 # All condition were separate initially.
                 # It is merged in order to code maintenance for now.
                 # It is important as each symbols were supposed to be handled separately.
                 # It will be separated based on the need now.
-                if char == '#':
-                    is_comment = True
-                elif char == '\"' or char == '\'':
-                    is_string = not is_string
-                    buffer = ''
-                elif not (is_string or is_comment) and (char in symbols or char in operators):
+                #
+                # When iterating over characters, two case happens
+                # Either character goes back to the line or goes to the buffer
+                # Buffer gets process and than attached to the line and get emptied.
+                # If the buffer didn't get processed since it was in a string or comment
+                # then it get attached to the line anyway and get emptied.
+                # Buffer needs to be emptied either it get processed or not before getting attached to the line.
+                #
+                # If a character does not match any symbol then it goes to the buffer.
+                # Buffer than become a token when a character is symbol or space or new line to be processed.
+                # After the token is processed it get back attached to the line.
+                #
+                # CONCLUSION: A character either get attached back to line or goes to the buffer
+                # to become a token which get processed and than attached to the line and buffer get empty.
+                # If the buffer is not empty it means it is not processed due to string or comment.
+                # But its need to be clear and appended to the line.
+                if character == '\"' or character == '\'':
+                    if not is_comment:
+                        is_string = not is_string
+                    # If buffer is not empty it means it not been processed. Append it to the line and empty it
                     if buffer != '':
-                        token = buffer
-                        tokens = tkn.push(token=token, symbol=char, stack=tokens)
-                        py_line = tkn.process(token=token, line=py_line)
+                        py_line += buffer
                         buffer = ''
-                elif not (is_string or is_comment) and char == '(':
-                    if buffer != '':
-                        token = buffer
-                        tokens = tkn.push(token=token, symbol=char, stack=tokens)
-                        py_line = tkn.process(token=token, line=py_line)
-                        py_line = tkn.process(token=token, line=py_line, process_func=True)
-                        buffer = ''
-                    elif token != '':
-                        py_line = tkn.process(token=token, line=py_line, process_func=True)
-                        buffer = ''
-                else:
-                    buffer += char
+                    py_line += character  # Attached back to the new line
+                elif character == '#':
+                    if not is_string:
+                        # Do not process if it string. If it is string comment will not work
+                        is_comment = True
 
+                    # Process even if it is string
+                    # If buffer is not empty it means it not been processed. Append it to the line and empty it
+                    if buffer != '':
+                        py_line += buffer
+                        buffer = ''
+                    py_line += character  # Attached back to the new line
+                # If it is comment or string do not process as tokens
+                elif character in symbols or character in operators:
+                    if not (is_string or is_comment):
+                        # Do not process if it string or comment
+                        if buffer != '':
+                            token = buffer
+                            tokens = tkn.push(token=token, symbol=character, stack=tokens)
+                            token, token_processed = tkn.process_keyword(token=token)  # Processed for keyword
+                            py_line += token  # And than attached to the line
+                            buffer = ''
+
+                    # Process even if it string or comment.
+                    # If buffer is not empty it means it not been processed. Append it to the line and empty it
+                    if buffer != '':
+                        py_line += buffer
+                        buffer = ''
+
+                    py_line += character  # Attached back to the new line
+
+                elif character == '(':
+                    if not (is_string or is_comment):
+                        # Do not process if it string or comment
+                        if buffer != '':
+                            token = buffer
+                            tokens = tkn.push(token=token, symbol=character, stack=tokens)
+                            token, token_processed = tkn.process_keyword(token=token)  # Processed for keyword
+                            token, token_processed = tkn.process_func(token=token)  # And then for function
+                            py_line += token  # And then attached to the line
+                            #  since the tokenizer symbol is ( which means the token might be an inbuilt function
+                            buffer = ''
+                        else:
+                            # If the buffer is empty than chances are that the token has been
+                            # tokenized and processed by the space and got attached to the line.
+                            # But we need that token to be processed as function,
+                            # because that might be an inbuilt function.
+                            # So we take last processed token and see if its not been processed then
+                            # process it for function. If it is processed then replace the token with processed token
+                            # We don't append it here since we can not append, as it is already appended
+                            # so we replaced it.
+                            if token != "" and not token_processed:
+                                r_token, r_token_processed = tkn.process_func(token=token)
+                                if r_token_processed:
+                                    py_line = py_line.replace(token, r_token)
+
+                    # Process even if it string or comment.
+                    # If buffer is not empty it means it not been processed. Append it to the line and empty it
+                    if buffer != '':
+                        py_line += buffer
+                        buffer = ''
+                    py_line += character  # Attached back to the new line
+                else:
+                    buffer += character  # Attached to the buffer to be processed as token
+            # Finally appending line to the content of the file
             py_content += py_line
 
-            # print("tokens", tokens)
-
+    # Splitting file name to remove existing extension in order to add python extension
     file_split = file_name.split(".")
+    # Name of the python file to be created
     py_file = file_split[0] + ".py"
+    # Creating the python file
     f = open(py_file, "w")
+    # And then writing content to the python file
     f.write(py_content)

@@ -5,6 +5,7 @@
 *.go
 *.ql
 *.qalb
+qalb/test.py
 0
 ### Python ###
 # Byte-compiled / optimized / DLL files
