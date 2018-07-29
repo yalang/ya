@@ -54,7 +54,7 @@ func_dict = {
         '': 'bytearray', '': 'filter', '': 'issubclass', '': 'pow', '': 'super',
         '': 'bytes', '': 'float', '': 'iter', 'اكتب': 'print', '': 'tuple',
         '': 'callable', 'شكل': 'format', 'الطول': 'len', '': 'property', 'نوع': 'type',
-        '': 'chr', '': 'frozenset', '': 'list', '': 'range', '': 'vars',
+        '': 'chr', '': 'frozenset', '': 'list', 'نطاق': 'range', '': 'vars',
         '': 'classmethod', '': 'getattr', '': 'locals', '': 'repr', '': 'zip',
         '': 'compile', '': 'globals', '': 'map', '': 'reversed', '': '__import__',
         '': 'complex', '': 'hasattr', 'أقصى': 'max', '': 'round'
