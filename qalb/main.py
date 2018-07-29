@@ -1,34 +1,54 @@
-from qalb import ar_token as tkn
+import json
+import os
+script_dir = os.path.dirname(__file__)
+with open(os.path.join(script_dir, 'py/ar/numbers.json')) as f:
+    num_dict = json.load(f)
+with open(os.path.join(script_dir, 'py/ar/keywords.json')) as f:
+    keyword_dict = json.load(f)
+with open(os.path.join(script_dir, 'py/ar/functions.json')) as f:
+    func_dict = json.load(f)
+
+
+def process_keyword(token):
+    # If the token is a arabic number it will return english number
+    if token[0] in num_dict.keys():
+        return ''.join([num_dict[c] for c in token]), True
+
+    # If the token matches any python keywords it returns that keywords
+    if token in keyword_dict.keys():
+        return keyword_dict[token], True
+
+    # If nothing matches it returns token as it
+    return token, False
+
+
+def process_func(token):
+    # If the token matches any python in built it returns that function name
+    if token in func_dict.keys():
+        return func_dict[token], True
+
+    # If nothing matches it returns token as it
+    return token, False
+
+
+def push_token(token, symbol, stack):
+    if token == '':
+        token = stack.pop()
+
+    if symbol != " " and token == " ":
+        stack.append(symbol)
+    else:
+        stack.append(token)
+        stack.append(symbol)
+
+    return stack
 
 
 def main(file_name):
-
-    # Flag Variables for future use maybe.
-    # If not used will be removed.
-    # is_import = False
-    # is_from = False
-    # is_as = False
-    # is_curly_bracket = False
-    # is_square_bracket = False
-    # is_bracket = False
-    # is_function = False
-    # is_class = False
-    # is_if = False
-    # is_else = False
-    # is_elseif = False
-    # is_while = False
-    # is_for = False
-    # is_try = False
-    # is_except = False
-    # is_finally = False
-    # is_pass = False
-    # is_global = False
-    # is_return = False
     # Flag for string
     is_string = False
     # Storing as list for matching each symbol by using 'in' identifier
-    operators = ['=', '!', '<', '>', '+', '-', '%', '/', '*', '^',
-                 '==', '!=', '<=', '>=', '+=', '-=', '%=', '/=', '*=', '^=']
+    operators = ['=', '!', '<', '>', '+', '-', '%', '/', '*', '^']
     symbols = ['\n', ' ', ':', ';', '.', ',', ')', '[', ']', '{', '}']
 
     with open(file_name, 'r') as file:
@@ -98,8 +118,8 @@ def main(file_name):
                         # Do not process if it string or comment
                         if buffer != '':
                             token = buffer
-                            tokens = tkn.push(token=token, symbol=character, stack=tokens)
-                            token, token_processed = tkn.process_keyword(token=token)  # Processed for keyword
+                            tokens = push_token(token=token, symbol=character, stack=tokens)
+                            token, token_processed = process_keyword(token=token)  # Processed for keyword
                             py_line += token  # And than attached to the line
                             buffer = ''
 
@@ -116,9 +136,9 @@ def main(file_name):
                         # Do not process if it string or comment
                         if buffer != '':
                             token = buffer
-                            tokens = tkn.push(token=token, symbol=character, stack=tokens)
-                            token, token_processed = tkn.process_keyword(token=token)  # Processed for keyword
-                            token, token_processed = tkn.process_func(token=token)  # And then for function
+                            tokens = push_token(token=token, symbol=character, stack=tokens)
+                            token, token_processed = process_keyword(token=token)  # Processed for keyword
+                            token, token_processed = process_func(token=token)  # And then for function
                             py_line += token  # And then attached to the line
                             #  since the tokenizer symbol is ( which means the token might be an inbuilt function
                             buffer = ''
@@ -132,7 +152,7 @@ def main(file_name):
                             # We don't append it here since we can not append, as it is already appended
                             # so we replaced it.
                             if token != "" and not token_processed:
-                                r_token, r_token_processed = tkn.process_func(token=token)
+                                r_token, r_token_processed = process_func(token=token)
                                 if r_token_processed:
                                     py_line = py_line.replace(token, r_token)
 
