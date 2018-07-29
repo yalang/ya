@@ -83,21 +83,6 @@ def process_func(token):
     return token, False
 
 
-# def process(token, line, process_func=False):
-#     if token != '':
-#         if process_func:
-#             r_func = process_func(word=token)
-#             # If there is a inbuilt function name for this token, it will replace in the line
-#             if r_func:
-#                 line = line.replace(token, r_func)
-#         else:
-#             r_tkn = process_keyword(token=token)
-#             # If there is a keyword to replace, it will replace in the line
-#             if r_tkn:
-#                 line = line.replace(token, r_tkn)
-#     return line
-
-
 def push(token, symbol, stack):
     if token == '':
         token = stack.pop()

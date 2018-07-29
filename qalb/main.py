@@ -3,32 +3,10 @@ from qalb import ar_token as tkn
 
 def main(file_name):
 
-    # Flag Variables for future use maybe.
-    # If not used will be removed.
-    # is_import = False
-    # is_from = False
-    # is_as = False
-    # is_curly_bracket = False
-    # is_square_bracket = False
-    # is_bracket = False
-    # is_function = False
-    # is_class = False
-    # is_if = False
-    # is_else = False
-    # is_elseif = False
-    # is_while = False
-    # is_for = False
-    # is_try = False
-    # is_except = False
-    # is_finally = False
-    # is_pass = False
-    # is_global = False
-    # is_return = False
     # Flag for string
     is_string = False
     # Storing as list for matching each symbol by using 'in' identifier
-    operators = ['=', '!', '<', '>', '+', '-', '%', '/', '*', '^',
-                 '==', '!=', '<=', '>=', '+=', '-=', '%=', '/=', '*=', '^=']
+    operators = ['=', '!', '<', '>', '+', '-', '%', '/', '*', '^']
     symbols = ['\n', ' ', ':', ';', '.', ',', ')', '[', ']', '{', '}']
 
     with open(file_name, 'r') as file:
