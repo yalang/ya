@@ -80,4 +80,6 @@ Now if we have a package name with تنسرتدفق which will have function nam
 
 `استيراد تنسرتدفق مثل تنسر`
 
+See مفيد package in this repository for example
+
 **Plugins:** Plugins for editor is must in order to write the code. And it needed to be developed.
