@@ -47,6 +47,8 @@ def push_token(token, symbol, stack):
 def main(file_name):
     # Flag for string
     is_string = False
+    if os.path.isdir(file_name):
+        pass
     # Storing as list for matching each symbol by using 'in' identifier
     operators = ['=', '!', '<', '>', '+', '-', '%', '/', '*', '^']
     symbols = ['\n', ' ', ':', ';', '.', ',', ')', '[', ']', '{', '}']
@@ -118,7 +120,6 @@ def main(file_name):
                         # Do not process if it string or comment
                         if buffer != '':
                             token = buffer
-                            tokens = push_token(token=token, symbol=character, stack=tokens)
                             token, token_processed = process_keyword(token=token)  # Processed for keyword
                             py_line += token  # And than attached to the line
                             buffer = ''
