@@ -30,21 +30,21 @@ Next Add "PATH=$HOME/qalblang/bin:$PATH" to your `.bash_profile`
 
 Open terminal and create a *.قلب file.
 
-`vi احلا.قلب`
+`vi اهلا.قلب`
 
-Lets write some code to print "احلا و سهلا يا عالم"
+Lets write some code to print "اهلا و سهلا يا عالم"
 
-`اكتب("احلا و سهلا يا عالم")`
+`اكتب("اهلا و سهلا يا عالم")`
 
 Save file and exit
 
 And now run
 
-`قلب احلا`
+`قلب اهلا`
 
 It will print 
 
-`احلا و سهلا يا عالم`
+`اهلا و سهلا يا عالم`
 
 For more sample code see (https://github.com/qalblang/qalblang-sample)
 
