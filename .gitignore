@@ -5,6 +5,7 @@
 *.go
 *.ql
 *.qalb
+*.back
 qalb/test.py
 0
 ### Python ###
