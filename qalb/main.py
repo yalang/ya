@@ -1,4 +1,5 @@
 import qalb.token_util as util
+import token
 import json
 import os
 script_dir = os.path.dirname(__file__)
@@ -52,11 +53,13 @@ def main(file_name):
     is_string = False
     is_string_single = False
     is_string_double = False
+
     if os.path.isdir(file_name):
         pass
     # Storing as list for matching each symbol by using 'in' identifier
     operators = ['=', '!', '<', '>', '+', '-', '%', '/', '*', '^']
-    symbols = ['\n', ' ', '#', '\"', '\'', ':', ';', '.', ',', '(', ')', '[', ']', '{', '}']
+    symbols = ['\n', ' ', '#', '\"', '\'', ':', ';', '.', ',', '@']
+    brackets = ['(', ')', '[', ']', '{', '}']
 
     with open(file_name, 'r') as file:
         py_content = ""  # store all the processed line or py_line
@@ -66,14 +69,14 @@ def main(file_name):
             # Flag for comment
             is_comment = False
 
-            tokens = tokens + util.tokenize(line=line, line_no=line_no, symbols=symbols + operators)
-
             # Replace unicode and other arabic character to english.
             line = line.replace("\u202b", "")
             line = line.replace("\u202c", "")
             line = line.replace("،", ",")
             line = line.replace("‬؛", ";")
             line = line.replace("٪", "%")
+            tokens = tokens + util.tokenize(line=line, line_no=line_no)
+
             buffer = ''  # Store buffer
             token = ''  # token to store buffer for processing
             token_processed = False  # to store if the token was process or not
@@ -151,7 +154,7 @@ def main(file_name):
                         buffer = ''
                     py_line += character  # Attached back to the new line
                 # If it is comment or string do not process as tokens
-                elif character in symbols or character in operators:
+                elif character in symbols + operators + brackets:
                     if not (is_string or is_comment):
                         # Do not process if it string or comment
                         if buffer != '':
@@ -171,7 +174,6 @@ def main(file_name):
                     buffer += character  # Attached to the buffer to be processed as token
             # Finally appending line to the content of the file
             py_content += py_line
-
 
     # Splitting file name to remove existing extension in order to add python extension
     file_split = file_name.split(".")
