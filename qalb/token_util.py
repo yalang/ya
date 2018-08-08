@@ -147,35 +147,45 @@ def tokenize(line, line_no):
     for character in line:
         char_no += 1
         if character == " " or character == "\n" or character in (symbols + operators + brackets):
-            if character == '\'' and not effected:
+            special_character = character # Since it is special char
+            if special_character == '\'' and not effected:
                 effected = Effected.AS_SINGLE_QUOTE_STRING
                 currently_effected = True
-            elif character == '\'' and effected is 1:
+            elif special_character == '\'' and effected is 1:
                 effected = 0
-            elif character == '\"' and not effected:
+            elif special_character == '\"' and not effected:
                 effected = 2
                 currently_effected = True
-            elif character == '\"' and effected is 2:
+            elif special_character == '\"' and effected is 2:
                 effected = 0
-            elif character == '#' and not effected:
+            elif special_character == '#' and not effected:
                 effected = 3
                 currently_effected = True
-            elif character == '\n' and effected is 3:
+            elif special_character == '\n' and effected is 3:
                 effected = 0
-            elif character == '\n' and effected is 2:
+            elif special_character == '\n' and effected is 2:
                 sys.exit("Closing string missing at line no " + str(line_no) + ":" + str(char_no))
-            elif character == '\n' and effected is 1:
+            elif special_character == '\n' and effected is 1:
                 sys.exit("Closing string missing at line no " + str(line_no), ":" + str(char_no))
 
             if effected and not currently_effected:
-                buffer += character
+                buffer += special_character
             else:
                 if buffer != '':
                     tokens = push_token(token=buffer, is_symbol=False, stack=tokens)
                     buffer = ''
-                tokens = push_token(token=character, is_symbol=True, stack=tokens)
+                # tokens = push_token(token=character, is_symbol=True, stack=tokens)
+                buffer += special_character
+                # tokens = push_token(token=character, is_symbol=True, stack=tokens)
             currently_effected = False
         else:
-            buffer += character  # Attached to the buffer to be processed as token
+            if effected and not currently_effected:
+                buffer += character
+            else:
+                if buffer != '':
+                    tokens = push_token(token=buffer, is_symbol=True, stack=tokens)
+                    buffer = ''
+                # tokens = push_token(token=character, is_symbol=True, stack=tokens)
+                buffer += character  # Attached to the buffer to be processed as token
 
     return tokens
