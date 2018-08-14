@@ -48,7 +48,7 @@ with open(os.path.join(script_dir, 'py/ar/functions.json')) as f:
 
 
 def main(file_name):
-    tokens = []  # Store all the token. not being used may used in future
+    file_tokens = []  # Store all the token. not being used may used in future
     # Flag for string
     is_string = False
     is_string_single = False
@@ -73,9 +73,9 @@ def main(file_name):
             line = line.replace("\u202b", "")
             line = line.replace("\u202c", "")
             line = line.replace("،", ",")
-            line = line.replace("‬؛", ";")
+            line = line.replace("؛", ";")
             line = line.replace("٪", "%")
-            tokens = tokens + util.tokenize(line=line, line_no=line_no)
+            file_tokens.append(util.tokenize(line=line, line_no=line_no))
 
             buffer = ''  # Store buffer
             token = ''  # token to store buffer for processing
@@ -175,6 +175,19 @@ def main(file_name):
             # Finally appending line to the content of the file
             py_content += py_line
 
+    # # Splitting file name to remove existing extension in order to add python extension
+    # file_split = file_name.split(".")
+    # # Name of the python file to be created
+    # py_file = file_split[0] + ".py"
+    # # Creating the python file
+    # f = open(py_file, "w")
+    # # And then writing content to the python file
+    # f.write(py_content)
+
+    print(file_tokens)
+
+    py_src_content = util.untokenize(file_tokens)
+
     # Splitting file name to remove existing extension in order to add python extension
     file_split = file_name.split(".")
     # Name of the python file to be created
@@ -182,6 +195,4 @@ def main(file_name):
     # Creating the python file
     f = open(py_file, "w")
     # And then writing content to the python file
-    f.write(py_content)
-
-    print(tokens)
+    f.write(py_src_content)

@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Identified(Enum):
+class Identifier(Enum):
     AS_NONE = 0
     AS_IF = 1
     AS_ELSE = 2
@@ -26,3 +26,6 @@ class Identified(Enum):
     AS_INT = 22
     AS_FLOAT = 23
     AS_STRING = 24
+    AS_OPERATOR = 25
+    AS_BRACKET = 26
+    AS_STATEMENT_END = 27

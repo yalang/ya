@@ -7,6 +7,7 @@
 *.qalb
 *.back
 qalb/test.py
+test.py
 0
 ### Python ###
 # Byte-compiled / optimized / DLL files

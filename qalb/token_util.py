@@ -1,7 +1,5 @@
 import sys
 from qalb.enum.effected import Effected
-from qalb.enum.identified import Identified
-from qalb.enum.bracket import Bracket
 
 
 def change_keyword(token, num_dict, keyword_dict):
@@ -144,6 +142,7 @@ def tokenize(line, line_no):
     # effected
     effected = 0
     currently_effected = False
+    last_symbol = ""
     for character in line:
         char_no += 1
         if character == " " or character == "\n" or character in (symbols + operators + brackets):
@@ -151,21 +150,24 @@ def tokenize(line, line_no):
             if special_character == '\'' and not effected:
                 effected = Effected.AS_SINGLE_QUOTE_STRING
                 currently_effected = True
-            elif special_character == '\'' and effected is 1:
-                effected = 0
+            elif special_character == '\'' and effected is Effected.AS_SINGLE_QUOTE_STRING:
+                effected = Effected.AS_NONE
             elif special_character == '\"' and not effected:
-                effected = 2
+                effected = Effected.AS_DOUBLE_QUOTE_STRING
                 currently_effected = True
-            elif special_character == '\"' and effected is 2:
-                effected = 0
+            elif special_character == '\"' and effected is Effected.AS_DOUBLE_QUOTE_STRING:
+                effected = Effected.AS_NONE
             elif special_character == '#' and not effected:
-                effected = 3
+                effected = Effected.AS_COMMENT
                 currently_effected = True
-            elif special_character == '\n' and effected is 3:
-                effected = 0
-            elif special_character == '\n' and effected is 2:
+            elif special_character == '\n' and effected is Effected.AS_COMMENT:
+                effected = Effected.AS_NONE
+                # Replacing # with ; since we are ignoring new line character.
+                # But in order to detect the end of statement we have replaced it with ;
+                special_character = ';'
+            elif special_character == '\n' and effected is Effected.AS_DOUBLE_QUOTE_STRING:
                 sys.exit("Closing string missing at line no " + str(line_no) + ":" + str(char_no))
-            elif special_character == '\n' and effected is 1:
+            elif special_character == '\n' and effected is Effected.AS_SINGLE_QUOTE_STRING:
                 sys.exit("Closing string missing at line no " + str(line_no), ":" + str(char_no))
 
             if effected and not currently_effected:
@@ -174,18 +176,26 @@ def tokenize(line, line_no):
                 if buffer != '':
                     tokens = push_token(token=buffer, is_symbol=False, stack=tokens)
                     buffer = ''
-                # tokens = push_token(token=character, is_symbol=True, stack=tokens)
-                buffer += special_character
-                # tokens = push_token(token=character, is_symbol=True, stack=tokens)
+                tokens = push_token(token=special_character, is_symbol=True, stack=tokens)
+                last_symbol = special_character
             currently_effected = False
         else:
-            if effected and not currently_effected:
-                buffer += character
-            else:
-                if buffer != '':
-                    tokens = push_token(token=buffer, is_symbol=True, stack=tokens)
-                    buffer = ''
-                # tokens = push_token(token=character, is_symbol=True, stack=tokens)
-                buffer += character  # Attached to the buffer to be processed as token
+            buffer += character
 
     return tokens
+
+
+def untokenize(file_tokens):
+    line_no = 0
+    src_content = ""
+    for line_tokens in file_tokens:
+        line_no += 1
+        src_line = ""
+        for token in line_tokens:
+            if token == ";":
+                src_line += "\n"
+            else:
+                src_line += token
+        src_content += src_line
+
+    return src_content

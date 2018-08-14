@@ -3,4 +3,4 @@ import qalb.main as mn
 
 if __name__ == '__main__':
     # file_name = sys.argv[1]
-    mn.main("new.ql")
+    mn.main("test.ql")
