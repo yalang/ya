@@ -1,6 +1,8 @@
 from enum import Enum
 
-
+"""
+Depricated
+"""
 class TokenType(Enum):
     NONE = 0
     # --start constants--

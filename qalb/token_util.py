@@ -140,24 +140,24 @@ def tokenize(line, line_no):
     # effected 2 is double quote string
     # effected 3 is comment
     # effected
-    effected = 0
+    effected = Effected.AS_NONE
     currently_effected = False
     last_symbol = ""
     for character in line:
         char_no += 1
         if character == " " or character == "\n" or character in (symbols + operators + brackets):
             special_character = character # Since it is special char
-            if special_character == '\'' and not effected:
+            if special_character == '\'' and effected is Effected.AS_NONE:
                 effected = Effected.AS_SINGLE_QUOTE_STRING
                 currently_effected = True
             elif special_character == '\'' and effected is Effected.AS_SINGLE_QUOTE_STRING:
                 effected = Effected.AS_NONE
-            elif special_character == '\"' and not effected:
+            elif special_character == '\"' and effected is Effected.AS_NONE:
                 effected = Effected.AS_DOUBLE_QUOTE_STRING
                 currently_effected = True
             elif special_character == '\"' and effected is Effected.AS_DOUBLE_QUOTE_STRING:
                 effected = Effected.AS_NONE
-            elif special_character == '#' and not effected:
+            elif special_character == '#' and effected is Effected.AS_NONE:
                 effected = Effected.AS_COMMENT
                 currently_effected = True
             elif special_character == '\n' and effected is Effected.AS_COMMENT:
@@ -170,7 +170,7 @@ def tokenize(line, line_no):
             elif special_character == '\n' and effected is Effected.AS_SINGLE_QUOTE_STRING:
                 sys.exit("Closing string missing at line no " + str(line_no), ":" + str(char_no))
 
-            if effected and not currently_effected:
+            if effected is not Effected.AS_NONE and not currently_effected:
                 buffer += special_character
             else:
                 if buffer != '':
