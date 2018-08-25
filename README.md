@@ -18,8 +18,6 @@ Python3
 ## Installation
 Clone this repository in a folder.
 
-`git init`
-
 `git clone https://github.com/qalblang/qalblang.git`
 
 Now go to the qalblang folder and run
