@@ -8,6 +8,8 @@
 *.back
 qalb/test.py
 test.py
+_*
+*/_*
 0
 ### Python ###
 # Byte-compiled / optimized / DLL files

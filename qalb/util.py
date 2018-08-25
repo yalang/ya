@@ -15,62 +15,52 @@ def change_keyword(token, num_dict, keyword_dict):
     return token, False
 
 
-def change_func(token, func_dict):
-    # If the token matches any python in built it returns that function name
-    if token in func_dict.keys():
-        return func_dict[token], True
-
-    # If nothing matches it returns token as it
-    return token, False
-
-
-def push_token(token, is_symbol=False, stack=[]):
-    if token == "":
-        return stack
-
-    if token == " ":
-        return stack
-
-    if token == "\n":
-        return stack
-
-    if len(stack) == 0:
-        stack.append(token)
-        return stack
-
-    stack.append(token)
-
-    # last_token = stack.pop()
-    #
-    # if is_symbol and last_token == " ":
-    #     stack.append(token)
-    # else:
-    #     stack.append(last_token)
-    #     stack.append(token)
-
-    return stack
+def replace_num(text):
+    num_dict = {"0": "٠", "1": "١", "2": "٢", "3": "٣", "4": "٤", "5": "٥", "6": "٦", "7": "٧", "8": "٨", "9": "٩"}
+    for num in num_dict.keys():
+        if num in text:
+            text = text.replace(num, num_dict[num])
+    return text
 
 
-def tokenize(line, line_no):
+def process(file, num_dict, keyword_dict):
+
+    py_content = ""  # store all the processed line or py_line
+    line_no = 0  # store the characters position
+    for line in file:
+        line_no += 1
+
+        # Replace unicode and other arabic character to english.
+        line = line.replace("\u202b", "")
+        line = line.replace("\u202c", "")
+        line = line.replace("،", ",")
+        line = line.replace("؛", "")
+        line = line.replace("٪", "%")
+
+        # Finally appending line to the content of the file
+        py_content += process_line(line, line_no, num_dict, keyword_dict)
+
+    return py_content
+
+
+def process_line(line, line_no, num_dict, keyword_dict):
 
     operators = '=!<>+-%/*^'
     symbols = '#\"\':;.,@'
     brackets = '()[]{}'
 
-    tokens = []
     buffer = ''  # Store buffer
+    py_line = ''  # new line to store all characters and processed buffer or buffer
+
     char_no = 0  # store the characters position
-    # effected 1 is single quote string
-    # effected 2 is double quote string
-    # effected 3 is comment
-    # effected
     effected = Effected.AS_NONE
-    currently_effected = False
-    last_symbol = ""
+    currently_effected = False  # If is effected and is effected in current loop then true
+
     for character in line:
         char_no += 1
         if character == " " or character == "\n" or character in (symbols + operators + brackets):
-            special_character = character # Since it is special char
+            special_character = character  # Since it is special char
+
             if special_character == '\'' and effected is Effected.AS_NONE:
                 effected = Effected.AS_SINGLE_QUOTE_STRING
                 currently_effected = True
@@ -86,40 +76,21 @@ def tokenize(line, line_no):
                 currently_effected = True
             elif special_character == '\n' and effected is Effected.AS_COMMENT:
                 effected = Effected.AS_NONE
-                # Replacing # with ; since we are ignoring new line character.
-                # But in order to detect the end of statement we have replaced it with ;
-                special_character = ';'
             elif special_character == '\n' and effected is Effected.AS_DOUBLE_QUOTE_STRING:
-                sys.exit("Closing string missing at line no " + str(line_no) + ":" + str(char_no))
+                sys.exit(replace_num("هناك مشكلة في رقم الخط " + str(line_no) + ":" + str(char_no)))
             elif special_character == '\n' and effected is Effected.AS_SINGLE_QUOTE_STRING:
-                sys.exit("Closing string missing at line no " + str(line_no), ":" + str(char_no))
+                sys.exit(replace_num("هناك مشكلة في رقم الخط " + str(line_no), ":" + str(char_no)))
 
             if effected is not Effected.AS_NONE and not currently_effected:
                 buffer += special_character
             else:
                 if buffer != '':
-                    tokens = push_token(token=buffer, is_symbol=False, stack=tokens)
+                    buffer, token_processed = change_keyword(token=buffer, num_dict=num_dict, keyword_dict=keyword_dict)  # Processed for keyword
+                    py_line += buffer
                     buffer = ''
-                tokens = push_token(token=special_character, is_symbol=True, stack=tokens)
-                last_symbol = special_character
+                py_line += special_character
             currently_effected = False
         else:
             buffer += character
 
-    return tokens
-
-
-def untokenize(file_tokens):
-    line_no = 0
-    src_content = ""
-    for line_tokens in file_tokens:
-        line_no += 1
-        src_line = ""
-        for token in line_tokens:
-            if token == ";":
-                src_line += "\n"
-            else:
-                src_line += token
-        src_content += src_line
-
-    return src_content
+    return py_line

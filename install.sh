@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Removing existing installation
-rm -r $HOME/qalblang
+rm -rf $HOME/qalblang
 
 # Creating directory
 mkdir $HOME/qalblang
@@ -12,6 +12,9 @@ mkdir $HOME/qalblang/qalb
 cp -r bin/* $HOME/qalblang/bin
 cp -r qalb/* $HOME/qalblang/qalb
 cp start.py $HOME/qalblang
+
+# Adding class path
+#export PATH=$HOME/qalblang/bin:$PATH
 
 # Renaming file
 mv $HOME/qalblang/bin/qalb.sh $HOME/qalblang/bin/قلب
