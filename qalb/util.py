@@ -1,11 +1,35 @@
 import sys
 from qalb.enum.effected import Effected
+from qalb.enum.token_error import TokenError
 
 
-def change_keyword(token, num_dict, keyword_dict):
+def replace_en_num(text):
+    num_dict = {"0": "٠", "1": "١", "2": "٢", "3": "٣", "4": "٤", "5": "٥", "6": "٦", "7": "٧", "8": "٨", "9": "٩"}
+    for num in num_dict.keys():
+        if num in text:
+            text = text.replace(num, num_dict[num])
+    return text
+
+
+def report_error(error, line_no, char_no):
+    sys.exit(replace_en_num(error.value + " " + " في رقم الخط " + str(line_no) + ":" + str(char_no)))
+
+
+def change_number(token, num_dict, line_no, char_no):
+    new_token = ''
+    for c in token:
+        if c in num_dict.keys():
+            new_token += num_dict[c]
+        else:
+            report_error(TokenError.INVALID_TOKEN, line_no, char_no)
+    return new_token
+
+
+def change_keyword(token, num_dict, keyword_dict, line_no, char_no):
     # If the token is a arabic number it will return english number
     if token[0] in num_dict.keys():
-        return ''.join([num_dict[c] for c in token]), True
+        return change_number(token, num_dict, line_no, char_no), True
+        # return ''.join([num_dict[c] for c in token]), True
 
     # If the token matches any python keywords it returns that keywords
     if token in keyword_dict.keys():
@@ -13,14 +37,6 @@ def change_keyword(token, num_dict, keyword_dict):
 
     # If nothing matches it returns token as it
     return token, False
-
-
-def replace_num(text):
-    num_dict = {"0": "٠", "1": "١", "2": "٢", "3": "٣", "4": "٤", "5": "٥", "6": "٦", "7": "٧", "8": "٨", "9": "٩"}
-    for num in num_dict.keys():
-        if num in text:
-            text = text.replace(num, num_dict[num])
-    return text
 
 
 def process(file, num_dict, keyword_dict):
@@ -77,15 +93,15 @@ def process_line(line, line_no, num_dict, keyword_dict):
             elif special_character == '\n' and effected is Effected.AS_COMMENT:
                 effected = Effected.AS_NONE
             elif special_character == '\n' and effected is Effected.AS_DOUBLE_QUOTE_STRING:
-                sys.exit(replace_num("هناك مشكلة في رقم الخط " + str(line_no) + ":" + str(char_no)))
+                report_error(TokenError.INCOMPLETE_STRING, line_no, char_no)
             elif special_character == '\n' and effected is Effected.AS_SINGLE_QUOTE_STRING:
-                sys.exit(replace_num("هناك مشكلة في رقم الخط " + str(line_no), ":" + str(char_no)))
+                report_error(TokenError.INCOMPLETE_STRING, line_no, char_no)
 
             if effected is not Effected.AS_NONE and not currently_effected:
                 buffer += special_character
             else:
                 if buffer != '':
-                    buffer, token_processed = change_keyword(token=buffer, num_dict=num_dict, keyword_dict=keyword_dict)  # Processed for keyword
+                    buffer, token_processed = change_keyword(buffer, num_dict, keyword_dict, line_no, char_no)  # Processed for keyword
                     py_line += buffer
                     buffer = ''
                 py_line += special_character
