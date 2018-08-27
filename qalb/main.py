@@ -1,15 +1,6 @@
-import qalb.util as util
-import json
+from qalb.process import Process
 import os
-
-
 script_dir = os.path.dirname(__file__)
-# with open(os.path.join(script_dir, 'py/ar/numbers.json')) as f:
-#     num_dict = json.load(f)
-# with open(os.path.join(script_dir, 'py/ar/keywords.json')) as f:
-#     keyword_dict = json.load(f)
-# with open(os.path.join(script_dir, 'py/ar/functions.json')) as f:
-#     func_dict = json.load(f)
 
 
 def main(file_name):
@@ -75,9 +66,11 @@ def main(file_name):
     # Appending print function code to the file
     with open(os.path.join(script_dir, 'include.py'), 'r') as file:
         py_content += file.read()
+
     # Reading file to process the text
     with open(file_name, 'r') as file:
-        py_content += util.process(file, num_dict, keyword_dict)  # process store all the processed line or py_line
+        # Process all content of the file
+        py_content += Process(file, num_dict, keyword_dict).process()
 
     # Splitting file name to remove existing extension in order to add python extension
     file_split = file_name.split(".")
