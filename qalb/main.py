@@ -58,6 +58,77 @@ def main(file_name):
       "خيط":     "string"
     }
 
+    function_dict = {
+      "مطلق": "abs",
+      "": "delattr",
+      "مزيج": "hash",
+      "": "memoryview",
+      "مجموعة": "set",
+      "كل": "all",
+      "قاموس": "dict",
+      "مساعدة": "help",
+      "أدنى": "min",
+      "": "setattr",
+      "أي": "any",
+      "دليل": "dir",
+      "": "hex",
+      "بعد": "next",
+      "شريحة": "slice",
+      "أسكي": "ascii",
+      "": "divmod",
+      "": "id",
+      "": "object",
+      "رتب": "sorted",
+      "": "bin",
+      "": "enumerate",
+      "إدخال": "input",
+      "": "oct",
+      "": "staticmethod",
+      "منطقية": "bool",
+      "": "eval",
+      "عدد": "int",
+      "افتح": "open",
+      "": "str",
+      "نقطةكسر": "breakpoint",
+      "": "exec",
+      "": "isinstance",
+      "": "ord",
+      "": "sum",
+      "": "bytearray",
+      "": "filter",
+      "": "issubclass",
+      "": "pow",
+      "ممتاز": "super",
+      "بايت": "bytes",
+      "عشري": "float",
+      "": "iter",
+      "": "tuple",
+      "للاستدعاء": "callable",
+      "شكل": "format",
+      "الطول": "len",
+      "": "property",
+      "نوع": "type",
+      "": "chr",
+      "": "frozenset",
+      "": "list",
+      "نطاق": "range",
+      "": "vars",
+      "": "classmethod",
+      "": "getattr",
+      "": "locals",
+      "": "repr",
+      "": "zip",
+      "": "compile",
+      "عالمي": "globals",
+      "خريطة": "map",
+      "عكس": "reversed",
+      "__استيراد__": "__import__",
+      "": "complex",
+      "": "hasattr",
+      "أقصى": "max",
+      "": "round"
+    }
+
     if os.path.isdir(file_name):
         # TODO: If the file name is directory then it will search all the file with *.قلب and process all file
         pass
@@ -70,7 +141,7 @@ def main(file_name):
     # Reading file to process the text
     with open(file_name, 'r') as file:
         # Process all content of the file
-        py_content += Process(file, num_dict, keyword_dict).process()
+        py_content += Process(file, num_dict, keyword_dict, function_dict).process()
 
     # Splitting file name to remove existing extension in order to add python extension
     file_split = file_name.split(".")

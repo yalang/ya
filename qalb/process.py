@@ -6,10 +6,11 @@ import qalb.util as util
 
 class Process:
 
-    def __init__(self, file, num_dict: dict, keyword_dict: dict):
+    def __init__(self, file, num_dict: dict, keyword_dict: dict, function_dict: dict):
         self.file = file
         self.num_dict: dict = num_dict
         self.keyword_dict: dict = keyword_dict
+        self.function_dict: dict = function_dict
         self.line: str = ''
         self.buffer: str = ''
         self.token: str = ''
@@ -46,18 +47,42 @@ class Process:
         if self.token is None or self.token == '':
             return False
 
-        # If the token is a arabic number it will return english number
+        # If the token is a arabic number it will replace english number
         if self.token[0] in self.num_dict.keys():
             self.change_number()
             return True
             # return ''.join([num_dict[c] for c in token]), True
 
-        # If the token matches any python keywords it returns that keywords
+        # If the token matches any python keywords it replaces that keywords
         if self.token in self.keyword_dict.keys():
             self.token = self.keyword_dict[self.token]
             return True
 
         # If nothing matches it returns token as it
+        return False
+
+    def change_function(self) -> bool:
+        if self.token is None or self.token == '':
+            return False
+
+        # If the token matches any python in built it replaces that function name
+        if self.token in self.function_dict.keys():
+            self.token = self.function_dict[self.token]
+            return True
+
+        # If nothing matches it returns false
+        return False
+
+    def get_next_symbol(self) -> bool:
+        self.next_symbol = ''
+        for character in self.line[self.char_no:]:
+            if character == " " or character == "\n" or character in self.all_symbols:
+                if character != " " and character != "\n":
+                    self.next_symbol = character
+                    return True
+            else:
+                return False
+
         return False
 
     def process_line(self):
@@ -72,6 +97,9 @@ class Process:
             self.char_no += 1
             if character == " " or character == "\n" or character in self.all_symbols:
                 special_character = character  # Since it is special char
+
+                if character != " " and character != "\n":
+                    self.current_symbol = special_character
 
                 if special_character == '\'' and self.effected is Effected.AS_NONE:
                     self.effected = Effected.AS_SINGLE_QUOTE_STRING
@@ -92,11 +120,24 @@ class Process:
 
                 if self.buffer != '':
                     self.token = self.buffer
+                    # Process for predefined keywords
                     token_processed = self.change_keyword()  # Processed for keyword
+                    if not token_processed and self.las_symbol != '.':
+                        # If not processed as keywords and the last symbol is not . i.e not a property
+                        if self.current_symbol != '' and self.current_symbol == '(':
+                            # If current symbol is start bracket then it is function
+                            token_processed = self.change_function()
+                        else:
+                            self.get_next_symbol()
+                            if self.next_symbol != '' and self.next_symbol == '(':
+                                token_processed = self.change_function()
                     py_line += self.token
                     self.buffer = ''
                     self.token = ''
                 py_line += special_character
+                self.current_symbol = ''
+                if character != " " and character != "\n":
+                    self.las_symbol = special_character
             else:
                 if self.effected is Effected.AS_NONE:
                     self.buffer += character
