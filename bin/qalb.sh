@@ -1,11 +1,13 @@
 #!/bin/bash
 
 if [ $# > 0 ]; then
-    if [ -s "$1.قلب" ];then
+    if [ -f "$1.قلب" ];then
         python3 $HOME/qalblang/start.py "$1.قلب"
-        python3 "$1.py"
+        if [ -f "$1.py" ];then
+            python3 "$1.py"
+        fi
     else
-        echo "ملف مفقود"
+        echo " ملف غير صالح $1"
     fi
 else
     echo "من فضلك ادخل الخيار"
