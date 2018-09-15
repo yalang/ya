@@ -56,6 +56,14 @@ class Process:
         # If the token matches any python keywords it replaces that keywords
         if self.token in self.keyword_dict.keys():
             self.token = self.keyword_dict[self.token]
+            if self.token == 'from' or self.token == 'import':
+                pass
+            elif self.token == 'if' or self.token == 'elif' or self.token == 'else' or self.token == 'while' or self.token == 'for':
+                pass
+            elif self.token == 'def' or self.token == 'lamda':
+                pass
+            elif self.token == 'class':
+                pass
             return True
 
         # If nothing matches it returns token as it
@@ -91,7 +99,7 @@ class Process:
 
         self.buffer = ''  # Store buffer
         self.char_no = 0  # store the characters position
-        self.effected = Effected.AS_NONE
+        # self.effected = Effected.AS_NONE
 
         for character in self.line:
             self.char_no += 1
