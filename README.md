@@ -61,7 +61,7 @@ For more sample code see (https://github.com/qalblang/qalblang-sample)
 - Clone this repo:
 ```bash
 git clone https://github.com/qalblang/qalblang.git
-cd vid2vid
+cd qalblang
 ```
 - Run install.sh:
 ```bash
