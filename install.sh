@@ -17,8 +17,10 @@ cp start.py $HOME/qalblang
 #export PATH=$HOME/qalblang/bin:$PATH
 
 # Renaming file
-mv $HOME/qalblang/bin/qalb.sh $HOME/qalblang/bin/قلب
-chmod +x  $HOME/qalblang/bin/قلب
+mv $HOME/qalblang/bin/qalb.sh $HOME/qalblang/bin/qalb
+chmod +x  $HOME/qalblang/bin/qalb
+ln $HOME/qalblang/bin/qalb $HOME/qalblang/bin/ql
+ln $HOME/qalblang/bin/qalb $HOME/qalblang/bin/قلب
 
 echo "Installation successful"
 echo "Next Add 'export PATH=$HOME/qalblang/bin:\$PATH' to your .bash_profile or .bashrc"
