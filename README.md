@@ -7,7 +7,7 @@ Which then can be used anywhere. You can code anything which you can code in pyt
 
 > It is recommended to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) as it support RTL text direction and and it also support .قلب extension. 
 
-- **Hello World**
+- **Hello World** [Sample File اهلا.قلب](https://github.com/qalblang/qalblang-sample/blob/master/اهلا.قلب)
 ```python
 اكتب("اهلا و سهلا يا عالم")؛
 ```
@@ -16,7 +16,7 @@ Output:
 اهلا و سهلا يا عالم
 ```
 
-- **Condition**
+- **Condition** [Sample File لو.قلب](https://github.com/qalblang/qalblang-sample/blob/master/لو.قلب)
 ```python
 ع = ٧
 لو ع ٪ ٢ == ٠:؛
@@ -31,7 +31,7 @@ Output:
 ع الزوجية
 ```
 
-- **Function**
+- **Function** [Sample File وظيفة.قلب](https://github.com/qalblang/qalblang-sample/blob/master/وظيفة.قلب)
 ```python
 وظيفة جمع(اولا، ثاني):؛
     كل = اولا + ثاني؛
