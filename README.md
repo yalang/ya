@@ -1,6 +1,9 @@
 # <:blue_heart:/> لغة القلب 
 
-**_QALB_** Language is an open source programming language where you can write python code in arabic language.
+> #### QalbLang is not related to the [قلب](https://github.com/nasser/---) (https://github.com/nasser/---) (https://en.wikipedia.org/wiki/Qalb_(programming_language)) (http://nas.sr/قلب/)
+> _**Be sure to checkout this awesome repo as well.**_
+
+**_QalbLang_** is an open source programming language where you can write python code in arabic language.
 
 It takes the arabic text and convert it into python code and execute it. 
 Which then can be used anywhere. You can code anything which you can code in python.
