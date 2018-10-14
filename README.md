@@ -1,6 +1,6 @@
 # <:blue_heart:/> لغة القلب 
 
-> #### QalbLang is not related to the [قلب](https://github.com/nasser/---) https://en.wikipedia.org/wiki/Qalb_(programming_language) http://nas.sr/قلب/
+> #### QalbLang is not related to the [قلب](https://github.com/nasser/---) (https://github.com/nasser/---) (https://en.wikipedia.org/wiki/Qalb_(programming_language)) (http://nas.sr/قلب/)
 > _**Be sure to checkout this awesome repo as well.**_
 
 **_QalbLang_** is an open source programming language where you can write python code in arabic language.
