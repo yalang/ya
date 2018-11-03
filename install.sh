@@ -1,26 +1,31 @@
 #!/usr/bin/env bash
+# Variable
+PROJECT=qalblang
+COMMAND=qalb
+
 
 # Removing existing installation
-rm -rf $HOME/qalblang
+rm -rf $HOME/$PROJECT
 
 # Creating directory
-mkdir $HOME/qalblang
-mkdir $HOME/qalblang/bin
-mkdir $HOME/qalblang/qalb
+mkdir $HOME/$PROJECT
+mkdir $HOME/$PROJECT/bin
+mkdir $HOME/$PROJECT/src
 
 # Copying file to the directory
-cp -r bin/* $HOME/qalblang/bin
-cp -r qalb/* $HOME/qalblang/qalb
-cp start.py $HOME/qalblang
+cp -r bin/* $HOME/$PROJECT/bin
+cp -r src/* $HOME/$PROJECT/src
+cp start.py $HOME/$PROJECT
 
 # Adding class path
-#export PATH=$HOME/qalblang/bin:$PATH
+#export PATH=$HOME/$PROJECT/bin:$PATH
 
-# Renaming file
-mv $HOME/qalblang/bin/qalb.sh $HOME/qalblang/bin/qalb
-chmod +x  $HOME/qalblang/bin/qalb
-ln $HOME/qalblang/bin/qalb $HOME/qalblang/bin/ql
-ln $HOME/qalblang/bin/qalb $HOME/qalblang/bin/قلب
+# Renaming command file
+mv $HOME/$PROJECT/bin/cmd.sh $HOME/$PROJECT/bin/$COMMAND
+chmod +x  $HOME/$PROJECT/bin/$COMMAND
+ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/قلب
+ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/ya
+ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/ي
 
 echo "Installation successful"
-echo "Next Add 'export PATH=$HOME/qalblang/bin:\$PATH' to your .bash_profile or .bashrc"
+echo "Next Add 'export PATH=$HOME/$PROJECT/bin:\$PATH' to your .bash_profile or .bashrc"

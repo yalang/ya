@@ -1,7 +1,7 @@
 import sys
-from qalb.enum.effected import Effected
-from qalb.enum.token_error import TokenError
-import qalb.util as util
+from src.enum.effected import Effected
+from src.enum.token_error import TokenError
+import src.util as util
 
 
 class Process:

@@ -1,4 +1,5 @@
-from qalb.process import Process
+from src.process import Process
+from src.enum.file_error import FileError
 import os
 import sys
 script_dir = os.path.dirname(__file__)
@@ -153,4 +154,4 @@ def main(file_name):
         # And then writing content to the python file
         f.write(py_content)
     else:
-        sys.exit("'" + file_name + "'" + " ملف غير صالح")
+        sys.exit("'" + file_name + "'" + " " + FileError.INVALID_FILE.value)

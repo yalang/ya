@@ -1,5 +1,10 @@
 # <:blue_heart:/> لغة القلب 
 
+> NOTE: We are changing the name of qalblang to yalang or (ي : لغة البرمجة) (yā: The programming language).
+> The last character.
+> Other names are most welcome. Please let me know at quadrixm@gmail.com. Happy to see your suggestions or any feedback.
+
+
 > #### QalbLang is not related to the [قلب](https://github.com/nasser/---) (https://github.com/nasser/---) (https://en.wikipedia.org/wiki/Qalb_(programming_language)) (http://nas.sr/قلب/)
 > _**Be sure to checkout this awesome repo as well.**_
 
