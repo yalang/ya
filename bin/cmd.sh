@@ -47,9 +47,3 @@ if [ "$#" -gt 0 ]; then
 else
     echo "من فضلك ادخل اسم الملف"
 fi
-
-
-# Removing any garbage file
-if [ -f "0" ];then
-    rm "0"
-fi
