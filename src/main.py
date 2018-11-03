@@ -14,7 +14,7 @@ num_dict = {
     "٦": "6",
     "٧": "7",
     "٨": "8",
-    "٩": "9"
+    "٩": "9",
 }
 
 keyword_dict = {
@@ -54,7 +54,7 @@ keyword_dict = {
     "منطقية": "bool",
     "عدد": "int",
     "عشري": "float",
-    "خيط": "string"
+    "خيط": "string",
 }
 
 function_dict = {
@@ -125,7 +125,7 @@ function_dict = {
     "": "complex",
     "": "hasattr",
     "أقصى": "max",
-    "": "round"
+    "": "round",
 }
 
 
