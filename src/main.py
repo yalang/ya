@@ -46,7 +46,7 @@ keyword_dict = {
     "أو": "or",
     "مرر": "pass",
     "رفع": "raise",
-    "إرجاع": "return",
+    "إرجع": "return",
     "حاول": "try",
     "بينما": "while",
     "مع": "with",

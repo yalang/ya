@@ -17,7 +17,7 @@ compile_n_run() {
             python3 "$1.py"
         fi
     else
-        echo "Python3 غير مثبت"
+        echo "Python3 غير مركب"
     fi
 }
 
