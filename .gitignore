@@ -4,10 +4,12 @@
 ### Ignored for dev ###
 *.go
 *.ql
+*.ya
 *.qalb
 *.back
 qalb/test.py
 test.py
+sample.py
 TODO.md
 _*
 */_*

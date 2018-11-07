@@ -1,4 +1,5 @@
-from qalb.process import Process
+from src.process import Process
+from src.enum.file_error import FileError
 import os
 import sys
 script_dir = os.path.dirname(__file__)
@@ -13,7 +14,7 @@ num_dict = {
     "٦": "6",
     "٧": "7",
     "٨": "8",
-    "٩": "9"
+    "٩": "9",
 }
 
 keyword_dict = {
@@ -53,7 +54,7 @@ keyword_dict = {
     "منطقية": "bool",
     "عدد": "int",
     "عشري": "float",
-    "خيط": "string"
+    "خيط": "string",
 }
 
 function_dict = {
@@ -124,7 +125,7 @@ function_dict = {
     "": "complex",
     "": "hasattr",
     "أقصى": "max",
-    "": "round"
+    "": "round",
 }
 
 
@@ -153,4 +154,4 @@ def main(file_name):
         # And then writing content to the python file
         f.write(py_content)
     else:
-        sys.exit("'" + file_name + "'" + " ملف غير صالح")
+        sys.exit("'" + file_name + "'" + " " + FileError.INVALID_FILE.value)
