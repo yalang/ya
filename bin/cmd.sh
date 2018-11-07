@@ -32,14 +32,6 @@ if [ "$#" -gt 0 ]; then
             compile_n_run "$1" "ي"
         elif [ -f "$1.ya" ];then
             compile_n_run "$1" "ya"
-        elif [ -f "$1.قلب" ];then
-            compile_n_run "$1" "قلب"
-        # For extension .qalb
-        elif [ -f "$1.qalb" ];then
-            compile_n_run "$1" "qalb"
-        # For extension .ql
-        elif [ -f "$1.ql" ];then
-            compile_n_run "$1" "ql"
         else
             echo " ملف غير صالح $1"
         fi

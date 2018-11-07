@@ -1,21 +1,24 @@
-# <:blue_heart:/> لغة القلب 
+# ي : لغة البرمجة 
 
-> NOTE: We are changing the name of qalblang to yalang or (ي : لغة البرمجة) (yā: The programming language).
+> NOTE: We have changed the name of this project to yalang or (ي : لغة البرمجة) (yā: The programming language).
 > The last character.
-> Other names are most welcome. Please let me know at quadrixm@gmail.com. Happy to see your suggestions or any feedback.
+> Previously it was called qalblang. 
+> You may find some footprint for the same in here. 
+> Please let me know at quadrixm@gmail.com. 
+> Happy to see your suggestions or any feedback.
 
 
 > #### QalbLang is not related to the [قلب](https://github.com/nasser/---) (https://github.com/nasser/---) (https://en.wikipedia.org/wiki/Qalb_(programming_language)) (http://nas.sr/قلب/)
 > _**Be sure to checkout this awesome repo as well.**_
 
-**_QalbLang_** is an open source programming language where you can write python code in arabic language.
+**_YaLang (ي)_** is an open source programming language where you can write python code in arabic language.
 
 It takes the arabic text and convert it into python code and execute it. 
 Which then can be used anywhere. You can code anything which you can code in python.
 
-> It is recommended to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) as it support RTL text direction and and it also support .قلب extension. 
+> It is recommended to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) as it support RTL text direction and and it also support .ي extension. 
 
-- **Hello World** [Sample File اهلا.قلب](https://github.com/qalblang/qalblang-sample/blob/master/اهلا.قلب)
+- **Hello World** [Sample File اهلا.ي](https://github.com/qalblang/qalblang-sample/blob/master/اهلا.ي)
 ```python
 اكتب("اهلا و سهلا يا عالم")؛
 ```
@@ -39,7 +42,7 @@ Output:
 ع الزوجية
 ```
 
-- **Function** [Sample File وظيفة.قلب](https://github.com/qalblang/qalblang-sample/blob/master/وظيفة.قلب)
+- **Function** [Sample File وظيفة.ي](https://github.com/qalblang/qalblang-sample/blob/master/وظيفة.ي)
 ```python
 وظيفة جمع(اولا، ثاني):؛
     كل = اولا + ثاني؛
