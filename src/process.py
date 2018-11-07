@@ -8,23 +8,23 @@ class Process:
 
     def __init__(self, file, num_dict: dict, keyword_dict: dict, function_dict: dict):
         self.file = file
-        self.num_dict: dict = num_dict
-        self.keyword_dict: dict = keyword_dict
-        self.function_dict: dict = function_dict
-        self.line: str = ''
-        self.buffer: str = ''
-        self.token: str = ''
-        self.las_symbol: str = ''
-        self.next_symbol: str = ''
-        self.current_symbol: str = ''
-        self.effected: Effected = Effected.AS_NONE
-        self.line_no: int = 0
-        self.char_no: int = 0
+        self.num_dict = num_dict
+        self.keyword_dict = keyword_dict
+        self.function_dict = function_dict
+        self.line = ''
+        self.buffer = ''
+        self.token = ''
+        self.las_symbol = ''
+        self.next_symbol = ''
+        self.current_symbol = ''
+        self.effected = Effected.AS_NONE
+        self.line_no = 0
+        self.char_no = 0
 
-        self.operators: str = '=!<>+-%/*^'
-        self.symbols: str = '#\"\':;.,@'
-        self.brackets: str = '()[]{}'
-        self.all_symbols: str = self.operators + self.symbols + self.brackets
+        self.operators = '=!<>+-%/*^'
+        self.symbols = '#\"\':;.,@'
+        self.brackets = '()[]{}'
+        self.all_symbols = self.operators + self.symbols + self.brackets
 
     def report_error(self, error: TokenError) -> None:
         error_str = error.value + " " + " في رقم الخط " \
