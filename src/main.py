@@ -132,7 +132,7 @@ function_dict = {
 def main(file_name):
 
     if os.path.isdir(file_name):
-        # TODO: If the file name is directory then it will search all the file with *.قلب and process all file
+        # TODO: If the file name is directory then it will search all the file with *.ي and process all file
         pass
     elif os.path.isfile(file_name):
         py_content = ''

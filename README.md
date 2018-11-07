@@ -7,10 +7,6 @@
 > Please let me know at quadrixm@gmail.com. 
 > Happy to see your suggestions or any feedback.
 
-
-> #### QalbLang is not related to the [قلب](https://github.com/nasser/---) (https://github.com/nasser/---) (https://en.wikipedia.org/wiki/Qalb_(programming_language)) (http://nas.sr/قلب/)
-> _**Be sure to checkout this awesome repo as well.**_
-
 **_YaLang (ي)_** is an open source programming language where you can write python code in arabic language.
 
 It takes the arabic text and convert it into python code and execute it. 
@@ -18,7 +14,7 @@ Which then can be used anywhere. You can code anything which you can code in pyt
 
 > It is recommended to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) as it support RTL text direction and and it also support .ي extension. 
 
-- **Hello World** [Sample File اهلا.ي](https://github.com/qalblang/qalblang-sample/blob/master/اهلا.ي)
+- **Hello World** [Sample File اهلا.ي](https://github.com/yalang/yalang-sample/blob/master/اهلا.ي)
 ```python
 اكتب("اهلا و سهلا يا عالم")؛
 ```
@@ -27,7 +23,7 @@ Output:
 اهلا و سهلا يا عالم
 ```
 
-- **Condition** [Sample File لو.قلب](https://github.com/qalblang/qalblang-sample/blob/master/لو.قلب)
+- **Condition** [Sample File لو.ي](https://github.com/yalang/yalang-sample/blob/master/لو.ي)
 ```python
 ع = ٧
 لو ع ٪ ٢ == ٠:؛
@@ -42,7 +38,7 @@ Output:
 ع الزوجية
 ```
 
-- **Function** [Sample File وظيفة.ي](https://github.com/qalblang/qalblang-sample/blob/master/وظيفة.ي)
+- **Function** [Sample File وظيفة.ي](https://github.com/yalang/yalang-sample/blob/master/وظيفة.ي)
 ```python
 وظيفة جمع(اولا، ثاني):؛
     كل = اولا + ثاني؛
@@ -59,7 +55,7 @@ Output:
 
 
 
-For more sample code see (https://github.com/qalblang/qalblang-sample)
+For more sample code see (https://github.com/yalang/yalang-sample)
 
 
 ## Prerequisites
@@ -71,19 +67,19 @@ For more sample code see (https://github.com/qalblang/qalblang-sample)
 ### Installation
 - Clone this repo:
 ```bash
-git clone https://github.com/qalblang/qalblang.git
-cd qalblang
+git clone https://github.com/yalang/yalang.git
+cd yalang
 ```
 - Run install.sh:
 ```bash
 ./install.sh
 ```
-- Add `export PATH=$HOME/qalblang/bin:$PATH` to `.bash_profile` or `.bashrc`
+- Add `export PATH=$HOME/yalang/bin:$PATH` to `.bash_profile` or `.bashrc`
 
 
 ## Running
 
-- Create a new file with name `اهلا.قلب` and open in any editor.
+- Create a new file with name `اهلا.ي` and open in any editor.
 
 - Write this in the file
 
@@ -98,7 +94,7 @@ cd qalblang
 - Run this command
 
 ```bash
-قلب اهلا
+ي اهلا
 ```
 
 - It will print 
@@ -109,7 +105,7 @@ cd qalblang
 
 ## Contributing
 
-You are most welcome to contribute for qalblang.
+You are most welcome to contribute for yalang.
 For guidelines see CONTRIBUTING.md
 
 To get started take a fork of this repository and clone it.
@@ -127,5 +123,5 @@ which calls the tensorflow actual functions we can write directly as
 
 `استيراد تنسر مثل تنسر`
 
-**Plugins:** Plugins for editors to support qalblang is required 
+**Plugins:** Plugins for editors to support yalang is required 
 in order to write the code easily.

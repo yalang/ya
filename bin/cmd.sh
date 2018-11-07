@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT=qalblang
+PROJECT=yalang
 
 compile_n_run() {
     # Checking if python 3 is installed

@@ -6,7 +6,7 @@
 
 > من المستحسن استخدام [IntelliJ IDEA](https://www.jetbrains.com/idea/). 
 
-- **اهلا** [ملف عينة اهلا.ي](https://github.com/qalblang/qalblang-sample/blob/master/اهلا.قلب)
+- **اهلا** [ملف عينة اهلا.ي](https://github.com/yalang/yalang-sample/blob/master/اهلا.ي)
 ```python
 اكتب("اهلا و سهلا يا عالم")؛
 ```
@@ -15,7 +15,7 @@
 اهلا و سهلا يا عالم
 ```
 
-- **شرط** [ملف عينة لو.ي](https://github.com/qalblang/qalblang-sample/blob/master/لو.قلب)
+- **شرط** [ملف عينة لو.ي](https://github.com/yalang/yalang-sample/blob/master/لو.ي)
 ```python
 ع = ٧
 لو ع ٪ ٢ == ٠:؛
@@ -30,7 +30,7 @@
 ع الزوجية
 ```
 
-- **وظيفة** [ملف عينة وظيفة.ي](https://github.com/qalblang/qalblang-sample/blob/master/وظيفة.قلب)
+- **وظيفة** [ملف عينة وظيفة.ي](https://github.com/yalang/yalang-sample/blob/master/وظيفة.ي)
 ```python
 وظيفة جمع(اولا، ثاني):؛
     كل = اولا + ثاني؛
@@ -47,7 +47,7 @@
 
 
 
-لمزيد من عينة رمز انظر (https://github.com/qalblang/qalblang-sample)
+لمزيد من عينة رمز انظر (https://github.com/yalang/yalang-sample)
 
 
 ## المتطلبات الأساسية
@@ -59,19 +59,19 @@
 ### تعليمات التحميل
 - انسخ هذا:
 ```bash
-git clone https://github.com/qalblang/qalblang.git
-cd qalblang
+git clone https://github.com/yalang/yalang.git
+cd yalang
 ```
 - تنفيذ هذا install.sh:
 ```bash
 ./install.sh
 ```
-- اضف `export PATH=$HOME/qalblang/bin:$PATH` إلى `.bash_profile` أو `.bashrc`
+- اضف `export PATH=$HOME/yalang/bin:$PATH` إلى `.bash_profile` أو `.bashrc`
 
 
 ## Running
 
-- قم بإنشاء ملف جديد بالاسم `اهلا.قلب` 
+- قم بإنشاء ملف جديد بالاسم `اهلا.ي` 
 
 - فتح في المحرر
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Variable
-PROJECT=qalblang
+PROJECT=yalang
 COMMAND=ya
 
 

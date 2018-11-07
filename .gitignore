@@ -3,17 +3,13 @@
 
 ### Ignored for dev ###
 *.go
-*.ql
 *.ya
-*.qalb
 *.back
-qalb/test.py
 test.py
 sample.py
 TODO.md
 _*
 */_*
-0
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Variable
-PROJECT=qalblang
+PROJECT=yalang
 
 # Removing existing installation
 rm -rf $HOME/$PROJECT
