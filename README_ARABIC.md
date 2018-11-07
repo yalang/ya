@@ -1,12 +1,12 @@
-# <:blue_heart:/> لغة القلب 
+# ي : لغة البرمجة 
 
-لغة القلب هي لغة برمجة مفتوحة المصدر
+ي : لغة البرمجة هي لغة برمجة مفتوحة المصدر
 
 هنا يمكنك كتابة باللغة العربية python code
 
 > من المستحسن استخدام [IntelliJ IDEA](https://www.jetbrains.com/idea/). 
 
-- **اهلا** [ملف عينة اهلا.قلب](https://github.com/qalblang/qalblang-sample/blob/master/اهلا.قلب)
+- **اهلا** [ملف عينة اهلا.ي](https://github.com/qalblang/qalblang-sample/blob/master/اهلا.قلب)
 ```python
 اكتب("اهلا و سهلا يا عالم")؛
 ```
@@ -15,7 +15,7 @@
 اهلا و سهلا يا عالم
 ```
 
-- **شرط** [ملف عينة لو.قلب](https://github.com/qalblang/qalblang-sample/blob/master/لو.قلب)
+- **شرط** [ملف عينة لو.ي](https://github.com/qalblang/qalblang-sample/blob/master/لو.قلب)
 ```python
 ع = ٧
 لو ع ٪ ٢ == ٠:؛
@@ -30,7 +30,7 @@
 ع الزوجية
 ```
 
-- **وظيفة** [ملف عينة وظيفة.قلب](https://github.com/qalblang/qalblang-sample/blob/master/وظيفة.قلب)
+- **وظيفة** [ملف عينة وظيفة.ي](https://github.com/qalblang/qalblang-sample/blob/master/وظيفة.قلب)
 ```python
 وظيفة جمع(اولا، ثاني):؛
     كل = اولا + ثاني؛
@@ -90,7 +90,7 @@ cd qalblang
 - تنفيذ هذا
 
 ```bash
-قلب اهلا
+ي اهلا.ي
 ```
 
 - انتاج 

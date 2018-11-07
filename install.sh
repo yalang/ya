@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Variable
 PROJECT=qalblang
-COMMAND=qalb
+COMMAND=ya
 
 
 # Removing existing installation
@@ -23,8 +23,6 @@ cp start.py $HOME/$PROJECT
 # Renaming command file
 mv $HOME/$PROJECT/bin/cmd.sh $HOME/$PROJECT/bin/$COMMAND
 chmod +x  $HOME/$PROJECT/bin/$COMMAND
-ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/قلب
-ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/ya
 ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/ي
 
 echo "Installation successful"
