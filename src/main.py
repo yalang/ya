@@ -18,12 +18,14 @@ num_dict = {
 }
 
 keyword_dict = {
+    "صحيح": "True",
     "زائف": "False",
     "لااحد": "None",
-    "صحيح": "True",
-    "و": "and",
     "مثل": "as",
     "أكد": "assert",
+    "غيرمتزامن": "async",
+    "و": "and",
+    "ترقب": "await",
     "اكسر": "break",
     "صنف": "class",
     "استمر": "continue",
@@ -41,8 +43,8 @@ keyword_dict = {
     "في": "in",
     "يساوي": "is",
     "امدا": "lambda",
-    "غيرمحلي": "nonlocal",
     "لا": "not",
+    "غيرمحلي": "nonlocal",
     "أو": "or",
     "مرر": "pass",
     "رفع": "raise",
