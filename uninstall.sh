@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Variable
-PROJECT=yalang
+PROJECT=ya
 
 # Removing existing installation
 rm -rf $HOME/$PROJECT
