@@ -14,6 +14,9 @@ Which then can be used anywhere. You can code anything which you can code in pyt
 
 > It is recommended to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) as it support RTL text direction and and it also support .ي extension. 
 
+> **You can add [IntelliJ plugin for Ya Language](https://plugins.jetbrains.com/plugin/11321-ya---language).**
+For installing pluging search 'ي' keyword in plugin tab of intelliJ editor.
+
 - **Hello World** [Sample File اهلا.ي](https://github.com/yalang/examples/blob/master/اهلا.ي)
 ```python
 اكتب("اهلا و سهلا يا عالم")؛
@@ -73,6 +76,11 @@ cd ya
 - Run install.sh:
 ```bash
 ./install.sh
+```
+
+- Or run Makefile:
+```bash
+make install
 ```
 - Add `export PATH=$HOME/ya/bin:$PATH` to `.bash_profile` or `.bashrc`
 

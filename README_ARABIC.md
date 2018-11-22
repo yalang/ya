@@ -62,10 +62,19 @@
 git clone https://github.com/yalang/ya.git
 cd ya
 ```
+
 - تنفيذ هذا install.sh:
 ```bash
 ./install.sh
 ```
+
+- أو تنفيذ هذا Makefile:
+```bash
+make install
+```
+
+
+
 - اضف `export PATH=$HOME/ya/bin:$PATH` إلى `.bash_profile` أو `.bashrc`
 
 
