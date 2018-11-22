@@ -26,4 +26,6 @@ chmod +x  $HOME/$PROJECT/bin/$COMMAND
 ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/ي
 
 echo "Installation successful"
+echo "التثبيت بنجاح"
 echo "Next Add 'export PATH=$HOME/$PROJECT/bin:\$PATH' to your .bash_profile or .bashrc"
+echo " '.bash_profile أو .bashrc  إلى 'export PATH=$HOME/$PROJECT/bin:\$PATH' التالي أضف"
