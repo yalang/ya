@@ -8,7 +8,6 @@
 *.back
 test.py
 sample.py
-TODO.md
 _*
 */_*
 ### Python ###
