@@ -1,15 +1,6 @@
 
 # Created by https://www.gitignore.io/api/python
 
-### Ignored for dev ###
-*.ي
-*.go
-*.ya
-*.back
-test.py
-sample.py
-_*
-*/_*
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -121,3 +112,15 @@ venv.bak/
 
 
 # End of https://www.gitignore.io/api/python
+
+
+### Ignored for dev ###
+*.ي
+*.go
+*.ya
+*.back
+test.py
+test_*
+sample.py
+_*
+*/_*
