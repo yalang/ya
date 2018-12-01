@@ -79,7 +79,7 @@ make install
 - اضف `export PATH=$HOME/ya/bin:$PATH` إلى `.bash_profile` أو `.bashrc`
 
 
-## Running
+## تنفيذ 
 
 - قم بإنشاء ملف جديد بالاسم `اهلا.ي` 
 
