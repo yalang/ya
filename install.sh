@@ -24,6 +24,8 @@ cp start.py $HOME/$PROJECT
 mv $HOME/$PROJECT/bin/cmd.sh $HOME/$PROJECT/bin/$COMMAND
 chmod +x  $HOME/$PROJECT/bin/$COMMAND
 ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/ي
+# Moving to local bin in order to not required to add class path for mac
+ln -s $HOME/$PROJECT/bin/ي /usr/local/bin/ي
 
 echo "Installation successful"
 echo "التثبيت بنجاح"
