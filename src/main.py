@@ -19,7 +19,7 @@ num_dict = {
 
 keyword_dict = {
     "صحيح": "True",
-    "زائف": "False",
+    "كاذب": "False",
     "لااحد": "None",
     "مثل": "as",
     "اكد": "assert",
