@@ -19,7 +19,7 @@ For installing pluging search 'ي' keyword in plugin tab of intelliJ editor.
 
 - **Hello World** [Sample File اهلا.ي](https://github.com/yalang/examples/blob/master/اهلا.ي)
 ```python
-اكتب("اهلا و سهلا يا عالم")؛
+اطبع("اهلا و سهلا يا عالم")؛
 ```
 Output:
 ```bash
@@ -30,11 +30,11 @@ Output:
 ```python
 ع = ٧
 لو ع ٪ ٢ == ٠:؛
-    اكتب("ع الفردية")؛
+    اطبع("ع الفردية")؛
 ولو ٧ == ٠:؛
-    اكتب("هذا صفر")؛
+    اطبع("هذا صفر")؛
 آخر:؛
-    اكتب("ع الزوجية")؛
+    اطبع("ع الزوجية")؛
 ```
 Output:
 ```bash
@@ -47,7 +47,7 @@ Output:
     كل = اولا + ثاني؛
     إرجع كل؛
 
-اكتب("جمع = "، جمع(٢، ٣))؛
+اطبع("جمع = "، جمع(٢، ٣))؛
 ```
 Output:
 ```bash
@@ -92,7 +92,7 @@ make install
 - Write this in the file
 
 ```vim
-اكتب("اهلا و سهلا يا عالم")؛
+اطبع("اهلا و سهلا يا عالم")؛
 ```
 
 - Save it
