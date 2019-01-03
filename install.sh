@@ -24,10 +24,11 @@ cp start.py $HOME/$PROJECT
 mv $HOME/$PROJECT/bin/cmd.sh $HOME/$PROJECT/bin/$COMMAND
 chmod +x  $HOME/$PROJECT/bin/$COMMAND
 ln $HOME/$PROJECT/bin/$COMMAND $HOME/$PROJECT/bin/ي
-# Creating a link to local bin so that we do not required to add class path for mac
+# Creating a link to local bin so that we do not required to add class path
+ln -s $HOME/$PROJECT/bin/$COMMAND /usr/local/bin/$COMMAND
 ln -s $HOME/$PROJECT/bin/ي /usr/local/bin/ي
 
 echo "Installation successful"
 echo "التثبيت بنجاح"
-echo "Next Add 'export PATH=$HOME/$PROJECT/bin:\$PATH' to your .bash_profile or .bashrc"
-echo " '.bash_profile أو .bashrc  إلى 'export PATH=$HOME/$PROJECT/bin:\$PATH' التالي أضف"
+#echo "Next Add 'export PATH=$HOME/$PROJECT/bin:\$PATH' to your .bash_profile or .bashrc"
+#echo " '.bash_profile أو .bashrc  إلى 'export PATH=$HOME/$PROJECT/bin:\$PATH' التالي أضف"
