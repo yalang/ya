@@ -35,7 +35,7 @@ keyword_dict = {
     "آخر": "else",
     "إلا": "except",
     "أخيرا": "finally",
-    "لأن": "for",
+    "لكل": "for",
     "من": "from",
     "عالمي": "global",
     "لو": "if",
