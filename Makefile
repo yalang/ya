@@ -2,6 +2,7 @@
 # Variable
 PROJECT := ya
 COMMAND := ya
+COMMAND_AR := ي
 
 REMOVE_CMD := rm
 MAKEDIR_CMD := mkdir
@@ -29,13 +30,17 @@ copy_dir:
 move_cmd:
 	@mv ${HOME}/${PROJECT}/bin/cmd.sh ${HOME}/${PROJECT}/bin/${COMMAND}
 	@chmod +x  ${HOME}/${PROJECT}/bin/${COMMAND}
-	@ln ${HOME}/${PROJECT}/bin/${COMMAND} ${HOME}/${PROJECT}/bin/ي
+#	@ln ${HOME}/${PROJECT}/bin/${COMMAND} ${HOME}/${PROJECT}/bin/ي
+	@ln -s ${HOME}/${PROJECT}/bin/${COMMAND} /usr/local/bin/${COMMAND}
+	@ln -s ${HOME}/${PROJECT}/bin/${COMMAND} /usr/local/bin/${COMMAND_AR}
 
 print_status:
 	@echo "Installation successful"
 	@echo "التثبيت بنجاح"
-	@echo "Next Add 'export PATH=${HOME}/${PROJECT}/bin:\$$PATH' to your .bash_profile or .bashrc"
-	@echo " '.bash_profile أو .bashrc  إلى 'export PATH=${HOME}/${PROJECT}/bin:\$$PATH' التالي أضف"
+#	@echo "Next Add 'export PATH=${HOME}/${PROJECT}/bin:\$$PATH' to your .bash_profile or .bashrc"
+#	@echo " '.bash_profile أو .bashrc  إلى 'export PATH=${HOME}/${PROJECT}/bin:\$$PATH' التالي أضف"
 
 clean:
 	@rm -rf ${HOME}/${PROJECT}
+	@rm -f /usr/local/bin/${COMMAND}
+	@rm -f /usr/local/bin/${COMMAND_AR}
