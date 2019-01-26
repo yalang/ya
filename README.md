@@ -1,11 +1,5 @@
 # ي : لغة البرمجة 
 
-> NOTE: We have changed the name of this project to ya or (ي : لغة البرمجة) (yā: The programming language).
-> The last character.
-> Previously it was called qalblang. 
-> You may find some footprint for the same in here. 
-> Please let me know at quadrixm@gmail.com. 
-> Happy to see your suggestions or any feedback.
 
 **_Ya (ي)_** is an open source programming language where you can write python code in arabic language.
 
@@ -33,7 +27,7 @@ Output:
     اطبع("ع الفردية")؛
 ولو ٧ == ٠:؛
     اطبع("هذا صفر")؛
-آخر:؛
+اخر:؛
     اطبع("ع الزوجية")؛
 ```
 Output:
@@ -62,7 +56,7 @@ For more sample code see (https://github.com/yalang/examples)
 
 
 ## Prerequisites
-- macOS
+- Mac OS or Ubuntu
 - Python 3
 
 
@@ -82,8 +76,6 @@ cd ya
 ```bash
 make install
 ```
-- Add `export PATH=$HOME/ya/bin:$PATH` to `.bash_profile` or `.bashrc`
-
 
 ## Running
 
