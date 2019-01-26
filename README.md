@@ -1,11 +1,5 @@
 # ي : لغة البرمجة 
 
-> NOTE: We have changed the name of this project to ya or (ي : لغة البرمجة) (yā: The programming language).
-> The last character.
-> Previously it was called qalblang. 
-> You may find some footprint for the same in here. 
-> Please let me know at quadrixm@gmail.com. 
-> Happy to see your suggestions or any feedback.
 
 **_Ya (ي)_** is an open source programming language where you can write python code in arabic language.
 
@@ -19,7 +13,7 @@ For installing pluging search 'ي' keyword in plugin tab of intelliJ editor.
 
 - **Hello World** [Sample File اهلا.ي](https://github.com/yalang/examples/blob/master/اهلا.ي)
 ```python
-اكتب("اهلا و سهلا يا عالم")؛
+اطبع("اهلا و سهلا يا عالم")؛
 ```
 Output:
 ```bash
@@ -30,11 +24,11 @@ Output:
 ```python
 ع = ٧
 لو ع ٪ ٢ == ٠:؛
-    اكتب("ع الفردية")؛
+    اطبع("ع الفردية")؛
 ولو ٧ == ٠:؛
-    اكتب("هذا صفر")؛
-آخر:؛
-    اكتب("ع الزوجية")؛
+    اطبع("هذا صفر")؛
+اخر:؛
+    اطبع("ع الزوجية")؛
 ```
 Output:
 ```bash
@@ -45,9 +39,9 @@ Output:
 ```python
 وظيفة جمع(اولا، ثاني):؛
     كل = اولا + ثاني؛
-    إرجع كل؛
+    ارجع كل؛
 
-اكتب("جمع = "، جمع(٢، ٣))؛
+اطبع("جمع = "، جمع(٢، ٣))؛
 ```
 Output:
 ```bash
@@ -62,7 +56,7 @@ For more sample code see (https://github.com/yalang/examples)
 
 
 ## Prerequisites
-- macOS
+- Mac OS or Ubuntu
 - Python 3
 
 
@@ -82,8 +76,6 @@ cd ya
 ```bash
 make install
 ```
-- Add `export PATH=$HOME/ya/bin:$PATH` to `.bash_profile` or `.bashrc`
-
 
 ## Running
 
@@ -92,7 +84,7 @@ make install
 - Write this in the file
 
 ```vim
-اكتب("اهلا و سهلا يا عالم")؛
+اطبع("اهلا و سهلا يا عالم")؛
 ```
 
 - Save it
