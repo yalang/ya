@@ -56,12 +56,14 @@ For more sample code see (https://github.com/yalang/examples)
 
 
 ## Prerequisites
-- Mac OS or Ubuntu
+- Mac OS or Linux
 - Python 3
 
 
 ## Getting Started
 ### Installation
+
+**PLEASE NOTE: You need root access for Linux operating system.
 - Clone this repo:
 ```bash
 git clone https://github.com/yalang/ya.git
